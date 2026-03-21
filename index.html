@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>我的资源库 | 个人展示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f5f7fb;
+            color: #1e293b;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #475569;
+            font-size: 1.1rem;
+        }
+
+        /* 网格布局 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #475569;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 图片样式 */
+        .img-preview {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #e2e8f0;
+        }
+
+        /* 视频样式 */
+        video {
+            width: 100%;
+            background: #000;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* 区块标题 */
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 2rem 0 1.5rem 0;
+            border-left: 4px solid #2563eb;
+            padding-left: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 640px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>📁 我的资源库</h1>
+        <p class="subtitle">图片 · 文档 · 视频</p>
+    </header>
+
+    <!-- 图片展示区 -->
+    <div class="section-title">🖼️ 图片作品</div>
+    <div class="grid">
+        <div class="card">
+            <img class="img-preview" src="images/photo1.jpg" alt="示例图片1">
+            <div class="card-content">
+                <h3>落日余晖</h3>
+                <p>拍摄于2025年，自然风光系列。</p>
+                <a href="images/photo1.jpg" target="_blank" class="btn">查看原图</a>
+            </div>
+        </div>
+        <div class="card">
+            <img class="img-preview" src="images/photo2.png" alt="示例图片2">
+            <div class="card-content">
+                <h3>城市夜景</h3>
+                <p>长曝光作品，展示都市活力。</p>
+                <a href="images/photo2.png" target="_blank" class="btn">查看原图</a>
+            </div>
+        </div>
+        <!-- 添加更多图片卡片，复制上面的代码块并修改图片路径和文字即可 -->
+    </div>
+
+    <!-- 文档展示区 -->
+    <div class="section-title">📄 文档资料</div>
+    <div class="grid">
+        <div class="card">
+            <div class="card-content">
+                <h3>项目说明书.pdf</h3>
+                <p>详细的产品设计文档，共12页。</p>
+                <a href="docs/sample.pdf" target="_blank" class="btn">在线预览</a>
+            </div>
+        </div>
+        <!-- 添加更多文档卡片 -->
+    </div>
+
+    <!-- 视频展示区 -->
+    <div class="section-title">🎬 视频作品</div>
+    <div class="grid">
+        <div class="card">
+            <video controls preload="metadata">
+                <source src="videos/demo.mp4" type="video/mp4">
+                您的浏览器不支持 video 标签。
+            </video>
+            <div class="card-content">
+                <h3>旅行记录</h3>
+                <p>2026年西藏之旅剪辑片段。</p>
+            </div>
+        </div>
+        <!-- 如果视频放在第三方平台（如B站），可以用嵌入代码替换上面的video标签，例如：
+        <iframe src="//player.bilibili.com/player.html?bvid=BV1xx411x7xx&page=1" 
+                scrolling="no" border="0" frameborder="no" framespacing="0" 
+                allowfullscreen="true" style="width:100%; aspect-ratio:16/9">
+        </iframe>
+        -->
+    </div>
+
+    <footer>
+        <p>© 2026 我的资源库 · 内容持续更新中</p>
+        <p>🌐 托管于 Cloudflare Pages | <a href="https://github.com/你的用户名/仓库名" target="_blank">GitHub 仓库</a></p>
+    </footer>
+</div>
+</body>
+</html>
