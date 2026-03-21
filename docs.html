@@ -2,19 +2,22 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <!-- 移动端适配，包含全面屏支持 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>文档资料 | 我的资源库</title>
-    <!-- KaTeX 支持 LaTeX -->
+    <!-- 引入 KaTeX 样式和核心库，用于渲染 LaTeX 数学公式 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+    <!-- 自动渲染插件，扫描页面中的公式定界符并渲染 -->
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
             onload="renderMathInElement(document.body, { 
                 delimiters: [
-                    {left: '\\[', right: '\\]', display: true},
-                    {left: '\\(', right: '\\)', display: false}
+                    {left: '\\[', right: '\\]', display: true},   // 行间公式 \[ ... \]
+                    {left: '\\(', right: '\\)', display: false}    // 行内公式 \( ... \)
                 ]
             });"></script>
     <style>
+        /* 全局样式重置 */
         * {
             margin: 0;
             padding: 0;
@@ -22,7 +25,7 @@
         }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #f5f7fb;
+            background: #f5f7fb;      /* 柔和背景 */
             color: #1e293b;
             line-height: 1.5;
             padding: 2rem 1rem;
@@ -31,6 +34,7 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+        /* 顶部导航栏，返回首页 */
         .nav-bar {
             margin-bottom: 2rem;
             text-align: left;
@@ -46,6 +50,7 @@
         .back-link:hover {
             text-decoration: underline;
         }
+        /* 区域标题，左侧蓝条装饰 */
         .section-title {
             font-size: 1.75rem;
             font-weight: 600;
@@ -53,12 +58,14 @@
             border-left: 4px solid #2563eb;
             padding-left: 1rem;
         }
+        /* 卡片网格：响应式布局，最小宽度 300px */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-bottom: 3rem;
         }
+        /* 单个文档卡片样式 */
         .card {
             background: white;
             border-radius: 1rem;
@@ -82,6 +89,7 @@
             font-size: 0.9rem;
             margin-bottom: 1rem;
         }
+        /* 按钮样式，用于在线预览 */
         .btn {
             display: inline-block;
             background: #2563eb;
@@ -96,6 +104,7 @@
         .btn:hover {
             background: #1d4ed8;
         }
+        /* 页脚样式 */
         footer {
             text-align: center;
             margin-top: 3rem;
@@ -104,6 +113,7 @@
             color: #64748b;
             font-size: 0.875rem;
         }
+        /* 移动端适配：网格变为单列，标题缩小 */
         @media (max-width: 640px) {
             .grid {
                 grid-template-columns: 1fr;
@@ -116,11 +126,15 @@
 </head>
 <body>
 <div class="container">
+    <!-- 返回首页的导航链接 -->
     <div class="nav-bar">
         <a href="index.html" class="back-link">← 返回首页</a>
     </div>
+    <!-- 页面主标题 -->
     <div class="section-title">📄 文档资料</div>
+    <!-- 文档卡片网格 -->
     <div class="grid">
+        <!-- 文档卡片示例 1：普通文档，包含行内公式 -->
         <div class="card">
             <div class="card-content">
                 <h3>项目说明书.pdf</h3>
@@ -128,6 +142,7 @@
                 <a href="docs/sample.pdf" target="_blank" class="btn">在线预览</a>
             </div>
         </div>
+        <!-- 文档卡片示例 2：包含行间公式（积分） -->
         <div class="card">
             <div class="card-content">
                 <h3>数学笔记.pdf</h3>
@@ -135,7 +150,7 @@
                 <a href="docs/math_notes.pdf" target="_blank" class="btn">在线预览</a>
             </div>
         </div>
-        <!-- 添加更多文档卡片 -->
+        <!-- 添加更多文档卡片：复制上面的 .card 结构，修改标题、描述和 PDF 路径即可 -->
     </div>
     <footer>
         <p>© 2026 我的资源库 · 文档持续更新中</p>
@@ -144,26 +159,27 @@
 
 <!-- ********** 调试信息：检测 KaTeX 加载状态 ********** -->
 <script>
+    // 页面加载完成后检测 KaTeX 相关库是否成功加载
     window.addEventListener('load', function() {
-        // 检查 KaTeX 核心和自动渲染函数是否加载
+        // 检查 KaTeX 核心和自动渲染函数是否存在
         var status = {
             katex: typeof katex !== 'undefined',
             renderMathInElement: typeof renderMathInElement !== 'undefined'
         };
         
-        // 在控制台输出详细信息（手机可通过 USB 调试或浏览器开发工具查看）
+        // 在浏览器控制台输出加载状态（方便调试）
         console.log('🔍 KaTeX 加载状态:', status);
         
-        // 如果加载失败，显示弹窗和页面提示
+        // 如果任一库加载失败，给出友好提示
         if (!status.katex || !status.renderMathInElement) {
             var msg = '❌ 数学公式加载失败！';
             if (!status.katex) msg += ' KaTeX 核心未加载。';
             if (!status.renderMathInElement) msg += ' 自动渲染插件未加载。';
             
-            // 弹窗提示（手机端可见）
+            // 弹窗提醒（移动端可见）
             alert(msg);
             
-            // 在页面顶部显示红色提示条
+            // 在页面顶部添加红色警告条，提示用户检查网络
             var warning = document.createElement('div');
             warning.style.backgroundColor = '#ffebee';
             warning.style.color = '#c62828';
@@ -184,7 +200,7 @@
             }
         } else {
             console.log('✅ KaTeX 加载正常，已自动渲染公式');
-            // 可选：手动再触发一次渲染（避免 onload 未执行）
+            // 安全起见，手动再触发一次渲染（防止 onload 未执行或延迟）
             if (typeof renderMathInElement === 'function') {
                 renderMathInElement(document.body, {
                     delimiters: [
@@ -197,5 +213,4 @@
     });
 </script>
 </body>
-</html>
 </html>
