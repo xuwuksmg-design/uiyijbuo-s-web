@@ -142,27 +142,60 @@
     </footer>
 </div>
 
-<!-- 检测 KaTeX 加载失败提示 -->
+<!-- ********** 调试信息：检测 KaTeX 加载状态 ********** -->
 <script>
     window.addEventListener('load', function() {
-        if (typeof renderMathInElement === 'undefined' || typeof katex === 'undefined') {
+        // 检查 KaTeX 核心和自动渲染函数是否加载
+        var status = {
+            katex: typeof katex !== 'undefined',
+            renderMathInElement: typeof renderMathInElement !== 'undefined'
+        };
+        
+        // 在控制台输出详细信息（手机可通过 USB 调试或浏览器开发工具查看）
+        console.log('🔍 KaTeX 加载状态:', status);
+        
+        // 如果加载失败，显示弹窗和页面提示
+        if (!status.katex || !status.renderMathInElement) {
+            var msg = '❌ 数学公式加载失败！';
+            if (!status.katex) msg += ' KaTeX 核心未加载。';
+            if (!status.renderMathInElement) msg += ' 自动渲染插件未加载。';
+            
+            // 弹窗提示（手机端可见）
+            alert(msg);
+            
+            // 在页面顶部显示红色提示条
             var warning = document.createElement('div');
             warning.style.backgroundColor = '#ffebee';
             warning.style.color = '#c62828';
             warning.style.padding = '12px 16px';
-            warning.style.margin = '16px auto';
+            warning.style.margin = '0 auto 16px auto';
             warning.style.borderRadius = '8px';
             warning.style.textAlign = 'center';
             warning.style.fontSize = '14px';
-            warning.style.maxWidth = '600px';
-            warning.innerHTML = '⚠️ 数学公式加载失败，请检查网络或尝试刷新页面。';
+            warning.style.maxWidth = '800px';
+            warning.innerHTML = msg + ' 请检查网络后刷新页面，或联系管理员。';
+            
             var container = document.querySelector('.container');
-            var nav = document.querySelector('.nav-bar');
-            if (container && nav) {
-                nav.insertAdjacentElement('afterend', warning);
+            var navBar = document.querySelector('.nav-bar');
+            if (container && navBar) {
+                navBar.insertAdjacentElement('afterend', warning);
+            } else {
+                document.body.insertBefore(warning, document.body.firstChild);
+            }
+        } else {
+            console.log('✅ KaTeX 加载正常，已自动渲染公式');
+            // 可选：手动再触发一次渲染（避免 onload 未执行）
+            if (typeof renderMathInElement === 'function') {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '\\[', right: '\\]', display: true},
+                        {left: '\\(', right: '\\)', display: false}
+                    ]
+                });
             }
         }
     });
 </script>
 </body>
+</html>
 </html>
