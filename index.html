@@ -4,8 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>我的资源库 | 个人展示</title>
-    <!-- MathJax 支持 LaTeX -->
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+    
+    <!-- 替换 MathJax 为 KaTeX（更快、移动端更稳定） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, { 
+                delimiters: [
+                    {left: '\\[', right: '\\]', display: true},
+                    {left: '\\(', right: '\\)', display: false}
+                ]
+            });"></script>
+    
+    <!-- 原有样式不变 -->
     <style>
         * {
             margin: 0;
@@ -188,5 +199,34 @@
         <p>🌐 托管于 Cloudflare Pages | <a href="https://github.com/你的用户名/仓库名" target="_blank">GitHub 仓库</a></p>
     </footer>
 </div>
+
+<!-- 检测 KaTeX 是否加载成功，若失败则显示友好提示 -->
+<script>
+    // 等待页面完全加载后检查
+    window.addEventListener('load', function() {
+        // 检查 KaTeX 核心函数和自动渲染函数是否存在
+        if (typeof renderMathInElement === 'undefined' || typeof katex === 'undefined') {
+            var warning = document.createElement('div');
+            warning.style.backgroundColor = '#ffebee';
+            warning.style.color = '#c62828';
+            warning.style.padding = '12px 16px';
+            warning.style.margin = '16px auto';
+            warning.style.borderRadius = '8px';
+            warning.style.textAlign = 'center';
+            warning.style.fontSize = '14px';
+            warning.style.maxWidth = '600px';
+            warning.innerHTML = '⚠️ 数学公式加载失败，请检查网络或尝试刷新页面。如需帮助，可联系管理员。';
+            // 插入到页面顶部（header之后，第一个section之前）
+            var container = document.querySelector('.container');
+            var header = document.querySelector('header');
+            if (container && header) {
+                header.insertAdjacentElement('afterend', warning);
+            } else {
+                document.body.insertBefore(warning, document.body.firstChild);
+            }
+        }
+    });
+</script>
+
 </body>
 </html>
