@@ -2,23 +2,29 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <!-- 视口设置，确保移动端适配，viewport-fit=cover 用于全面屏手机 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>资源库 | 导航</title>
     <style>
+        /* 全局样式重置，消除默认边距和内边距，使用 border-box 盒模型更易控制尺寸 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
+            /* 系统字体优先级，保证各平台显示统一 */
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* 渐变背景，从紫色到蓝紫色，营造现代感 */
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            /* flex 居中内容 */
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 1rem;
         }
+        /* 白色卡片容器，限制最大宽度，圆角阴影增加层次感 */
         .container {
             max-width: 800px;
             width: 100%;
@@ -28,6 +34,7 @@
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
             text-align: center;
         }
+        /* 主标题渐变文字 */
         h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
@@ -36,50 +43,59 @@
             -webkit-background-clip: text;
             color: transparent;
         }
+        /* 副标题样式 */
         .subtitle {
             color: #475569;
             margin-bottom: 2rem;
         }
+        /* 按钮列表采用纵向 flex 布局，间隔 1rem */
         .button-grid {
             display: flex;
             flex-direction: column;
             gap: 1rem;
             margin: 2rem 0;
         }
+        /* 按钮卡片样式，可点击区域 */
         .btn {
             display: block;
             background: #f1f5f9;
             border-radius: 1rem;
             padding: 1.5rem;
-            text-decoration: none;
-            transition: all 0.2s;
+            text-decoration: none;      /* 去除下划线 */
+            transition: all 0.2s;       /* 过渡效果，让 hover 更平滑 */
             border: 1px solid #e2e8f0;
         }
+        /* 悬停效果：轻微上移 + 阴影 + 边框加深 */
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
             border-color: #cbd5e1;
         }
+        /* 每个按钮里的图标样式 */
         .btn-icon {
             font-size: 3rem;
             display: block;
             margin-bottom: 0.5rem;
         }
+        /* 按钮标题 */
         .btn-title {
             font-size: 1.5rem;
             font-weight: 600;
             color: #1e293b;
             margin-bottom: 0.25rem;
         }
+        /* 按钮描述文字 */
         .btn-desc {
             color: #64748b;
             font-size: 0.9rem;
         }
+        /* 页脚样式 */
         footer {
             margin-top: 2rem;
             font-size: 0.8rem;
             color: #94a3b8;
         }
+        /* 移动端适配：缩小容器内边距和按钮内边距，调整字体大小，让在小屏幕上更紧凑 */
         @media (max-width: 640px) {
             .container {
                 padding: 1.5rem;
@@ -101,17 +117,21 @@
         <h1>📁 我的资源库</h1>
         <p class="subtitle">选择分类浏览</p>
         
+        <!-- 按钮列表，每个按钮是一个指向子页面的链接 -->
         <div class="button-grid">
+            <!-- 图片作品分类，点击跳转 images.html -->
             <a href="images.html" class="btn">
                 <span class="btn-icon">🖼️</span>
                 <span class="btn-title">图片作品</span>
                 <span class="btn-desc">摄影、设计、艺术图集</span>
             </a>
+            <!-- 文档资料分类，点击跳转 docs.html -->
             <a href="docs.html" class="btn">
                 <span class="btn-icon">📄</span>
                 <span class="btn-title">文档资料</span>
                 <span class="btn-desc">PDF、笔记、报告</span>
             </a>
+            <!-- 视频作品分类，点击跳转 videos.html -->
             <a href="videos.html" class="btn">
                 <span class="btn-icon">🎬</span>
                 <span class="btn-title">视频作品</span>
@@ -119,13 +139,11 @@
             </a>
         </div>
         
+        <!-- 页脚信息，包含版权和密码保护提示（实际密码保护功能需后端或前端额外实现） -->
         <footer>
             <p>© 2026 我的资源库 · 内容持续更新</p>
             <p>🔒 受密码保护</p>
         </footer>
     </div>
-</body>
-</html>
-
 </body>
 </html>
