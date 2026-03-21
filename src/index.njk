@@ -1,0 +1,35 @@
+---
+title: 资源库 | 导航
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {% include "head.njk" %}
+</head>
+<body>
+    <div class="container">
+        <h1>📁 我的资源库</h1>
+        <p class="subtitle">选择分类浏览</p>
+        
+        <div class="button-grid">
+            <a href="/images/" class="btn">
+                <span class="btn-icon">🖼️</span>
+                <span class="btn-title">图片作品</span>
+                <span class="btn-desc">摄影、设计、艺术图集</span>
+            </a>
+            <a href="/docs/" class="btn">
+                <span class="btn-icon">📄</span>
+                <span class="btn-title">文档资料</span>
+                <span class="btn-desc">PDF、笔记、报告</span>
+            </a>
+            <a href="/videos/" class="btn">
+                <span class="btn-icon">🎬</span>
+                <span class="btn-title">视频作品</span>
+                <span class="btn-desc">旅行记录、短片</span>
+            </a>
+        </div>
+        
+        {% include "footer.njk" %}
+    </div>
+</body>
+</html>

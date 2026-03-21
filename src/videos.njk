@@ -1,0 +1,30 @@
+---
+title: 视频作品 | 我的资源库
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {% include "head.njk" %}
+</head>
+<body>
+    <div class="container">
+        {% include "header.njk" %}
+        
+        <div class="section-title">🎬 视频作品</div>
+        <div class="grid">
+            <div class="card">
+                <video controls preload="metadata">
+                    <source src="/videos/demo.mp4" type="video/mp4">
+                    您的浏览器不支持 video 标签。
+                </video>
+                <div class="card-content">
+                    <h3>旅行记录</h3>
+                    <p>2026年西藏之旅剪辑片段。</p>
+                </div>
+            </div>
+        </div>
+        
+        {% include "footer.njk" %}
+    </div>
+</body>
+</html>

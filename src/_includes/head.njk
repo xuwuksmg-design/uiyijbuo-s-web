@@ -1,0 +1,144 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>{{ title or "我的资源库" }}</title>
+
+<!-- KaTeX 支持 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, { 
+            delimiters: [
+                {left: '\\[', right: '\\]', display: true},
+                {left: '\\(', right: '\\)', display: false}
+            ]
+        });"></script>
+
+<style>
+    /* 把原来每个页面都有的全局样式放这里，避免重复 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background: #f5f7fb;
+        color: #1e293b;
+        line-height: 1.5;
+        padding: 2rem 1rem;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .nav-bar {
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+    .section-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin: 1rem 0 1.5rem 0;
+        border-left: 4px solid #2563eb;
+        padding-left: 1rem;
+    }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    .card {
+        background: white;
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    }
+    .card-content {
+        padding: 1rem;
+    }
+    .card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+    .card p {
+        color: #475569;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    .btn {
+        display: inline-block;
+        background: #2563eb;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: background 0.2s;
+    }
+    .btn:hover {
+        background: #1d4ed8;
+    }
+    video {
+        width: 100%;
+        background: #000;
+    }
+    footer {
+        text-align: center;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e2e8f0;
+        color: #64748b;
+        font-size: 0.875rem;
+    }
+    @media (max-width: 640px) {
+        .grid {
+            grid-template-columns: 1fr;
+        }
+        .section-title {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+
+<!-- 公共脚本：KaTeX 加载检测（可选） -->
+<script>
+    window.addEventListener('load', function() {
+        var status = {
+            katex: typeof katex !== 'undefined',
+            renderMathInElement: typeof renderMathInElement !== 'undefined'
+        };
+        console.log('🔍 KaTeX 加载状态:', status);
+        if (!status.katex || !status.renderMathInElement) {
+            var msg = '❌ 数学公式加载失败！请检查网络后刷新页面。';
+            alert(msg);
+            var warning = document.createElement('div');
+            warning.style.backgroundColor = '#ffebee';
+            warning.style.color = '#c62828';
+            warning.style.padding = '12px 16px';
+            warning.style.margin = '0 auto 16px auto';
+            warning.style.borderRadius = '8px';
+            warning.style.textAlign = 'center';
+            warning.style.fontSize = '14px';
+            warning.style.maxWidth = '800px';
+            warning.innerHTML = msg;
+            var container = document.querySelector('.container');
+            if (container && container.firstChild) {
+                container.insertBefore(warning, container.firstChild);
+            }
+        }
+    });
+</script>
