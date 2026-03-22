@@ -1,0 +1,105 @@
+---
+title: 生物资源 | 我的资源库
+---
+{% extends "subject-layout.njk" %}
+
+{% block sidebar_nav %}
+    <li><a href="#cell">🧬 细胞与分子生物学</a></li>
+    <li><a href="#genetics">🧬 遗传与进化</a></li>
+    <li><a href="#ecology">🌿 生态与环境</a></li>
+{% endblock %}
+
+{% block mobile_nav %}
+    <a href="#cell">🧬 细胞与分子生物学</a>
+    <a href="#genetics">🧬 遗传与进化</a>
+    <a href="#ecology">🌿 生态与环境</a>
+{% endblock %}
+
+{% block content %}
+    <!-- 细胞与分子生物学部分 -->
+    <section id="cell" class="subject-section">
+        <div class="section-title">🧬 细胞与分子生物学</div>
+        <div class="section-desc">细胞结构 · 代谢 · 信号转导 · 分子遗传学</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>细胞生物学精要.pdf</h3>
+                    <p>细胞膜、细胞器、细胞周期、细胞分化与凋亡。</p>
+                    <a href="/docs/cell_biology.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>生物化学与分子生物学.pdf</h3>
+                    <p>蛋白质、核酸、酶、代谢调控、基因表达。公式示例：{% raw %}\[ \text{DNA} \rightarrow \text{RNA} \rightarrow \text{Protein} \]{% endraw %}</p>
+                    <a href="/docs/biochemistry_molecular.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>细胞信号转导.pdf</h3>
+                    <p>受体、第二信使、MAPK通路、细胞通讯。</p>
+                    <a href="/docs/signal_transduction.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 遗传与进化部分 -->
+    <section id="genetics" class="subject-section">
+        <div class="section-title">🧬 遗传与进化</div>
+        <div class="section-desc">孟德尔遗传 · 分子遗传学 · 群体遗传 · 进化论</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>遗传学基础.pdf</h3>
+                    <p>分离定律、自由组合、连锁互换、染色体变异。</p>
+                    <a href="/docs/genetics_basic.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>分子遗传学.pdf</h3>
+                    <p>DNA复制、转录、翻译、基因调控、表观遗传学。</p>
+                    <a href="/docs/molecular_genetics.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>进化生物学导论.pdf</h3>
+                    <p>自然选择、适应、物种形成、系统发育。</p>
+                    <a href="/docs/evolution_biology.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 生态与环境部分 -->
+    <section id="ecology" class="subject-section">
+        <div class="section-title">🌿 生态与环境</div>
+        <div class="section-desc">种群生态 · 群落生态 · 生态系统 · 环境保护</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>生态学原理.pdf</h3>
+                    <p>种群动态、种间关系、群落演替、生态系统能量流动与物质循环。</p>
+                    <a href="/docs/ecology_principles.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>保护生物学.pdf</h3>
+                    <p>生物多样性、濒危物种、栖息地保护、可持续发展。</p>
+                    <a href="/docs/conservation_biology.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>全球变化与生态响应.pdf</h3>
+                    <p>气候变化、碳循环、生态修复、环境政策。</p>
+                    <a href="/docs/global_change.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

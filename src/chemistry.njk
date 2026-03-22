@@ -1,0 +1,105 @@
+---
+title: 化学资源 | 我的资源库
+---
+{% extends "subject-layout.njk" %}
+
+{% block sidebar_nav %}
+    <li><a href="#basic">🧪 基础化学</a></li>
+    <li><a href="#organic">🌿 有机化学</a></li>
+    <li><a href="#frontier">🔬 前沿化学</a></li>
+{% endblock %}
+
+{% block mobile_nav %}
+    <a href="#basic">🧪 基础化学</a>
+    <a href="#organic">🌿 有机化学</a>
+    <a href="#frontier">🔬 前沿化学</a>
+{% endblock %}
+
+{% block content %}
+    <!-- 基础化学部分 -->
+    <section id="basic" class="subject-section">
+        <div class="section-title">🧪 基础化学</div>
+        <div class="section-desc">原子结构 · 化学键 · 热力学 · 平衡 · 反应动力学</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>无机化学核心概念.pdf</h3>
+                    <p>元素周期律、化学键、分子结构、配位化合物。</p>
+                    <a href="/docs/inorganic_core.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>物理化学简明教程.pdf</h3>
+                    <p>热力学定律、化学平衡、电化学、表面化学。公式示例：{% raw %}\[ \Delta G = -RT\ln K \]{% endraw %}</p>
+                    <a href="/docs/physical_chemistry.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>分析化学基础.pdf</h3>
+                    <p>滴定分析、光谱法、色谱法基础。</p>
+                    <a href="/docs/analytical_chemistry.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 有机化学部分 -->
+    <section id="organic" class="subject-section">
+        <div class="section-title">🌿 有机化学</div>
+        <div class="section-desc">烃及其衍生物 · 反应机理 · 合成设计 · 生物大分子</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>有机化学反应机理精讲.pdf</h3>
+                    <p>亲电取代、亲核加成、重排反应、立体化学。</p>
+                    <a href="/docs/organic_mechanisms.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>天然产物与药物化学.pdf</h3>
+                    <p>生物碱、萜类、抗生素、药物设计原理。</p>
+                    <a href="/docs/natural_products.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>高分子化学与物理.pdf</h3>
+                    <p>聚合机理、结构与性能、功能高分子材料。</p>
+                    <a href="/docs/polymer_chemistry.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 前沿化学部分 -->
+    <section id="frontier" class="subject-section">
+        <div class="section-title">🔬 前沿化学</div>
+        <div class="section-desc">计算化学 · 纳米材料 · 绿色化学 · 化学生物学</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>计算化学入门.pdf</h3>
+                    <p>分子模拟、密度泛函理论、量子化学计算基础。</p>
+                    <a href="/docs/computational_chemistry.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>纳米材料与催化.pdf</h3>
+                    <p>纳米结构制备、表面效应、新型催化剂设计。</p>
+                    <a href="/docs/nanomaterials_catalysis.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>绿色化学与可持续发展.pdf</h3>
+                    <p>原子经济性、可再生资源、无毒溶剂、循环利用。</p>
+                    <a href="/docs/green_chemistry.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

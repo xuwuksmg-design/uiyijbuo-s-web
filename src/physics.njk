@@ -1,0 +1,105 @@
+---
+title: 物理资源 | 我的资源库
+---
+{% extends "subject-layout.njk" %}
+
+{% block sidebar_nav %}
+    <li><a href="#classical">⚛️ 经典物理</a></li>
+    <li><a href="#modern">🔬 近代物理</a></li>
+    <li><a href="#frontier">🚀 前沿物理</a></li>
+{% endblock %}
+
+{% block mobile_nav %}
+    <a href="#classical">⚛️ 经典物理</a>
+    <a href="#modern">🔬 近代物理</a>
+    <a href="#frontier">🚀 前沿物理</a>
+{% endblock %}
+
+{% block content %}
+    <!-- 经典物理部分 -->
+    <section id="classical" class="subject-section">
+        <div class="section-title">⚛️ 经典物理</div>
+        <div class="section-desc">牛顿力学 · 热力学 · 电磁学 · 光学</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>牛顿力学与天体运动.pdf</h3>
+                    <p>运动学、动力学、万有引力，经典物理基石。</p>
+                    <a href="/docs/classical_mechanics.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>热力学与统计物理基础.pdf</h3>
+                    <p>热力学定律、熵、理想气体、相变。</p>
+                    <a href="/docs/thermodynamics_statistics.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>电磁场与电路理论.pdf</h3>
+                    <p>麦克斯韦方程组、电路分析、电磁波初步。</p>
+                    <a href="/docs/electromagnetism_circuits.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 近代物理部分 -->
+    <section id="modern" class="subject-section">
+        <div class="section-title">🔬 近代物理</div>
+        <div class="section-desc">相对论 · 量子力学 · 原子物理</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>狭义与广义相对论导论.pdf</h3>
+                    <p>时空观、质能方程、引力波初步。</p>
+                    <a href="/docs/relativity_intro.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>量子力学基础.pdf</h3>
+                    <p>波函数、不确定性原理、薛定谔方程、氢原子模型。</p>
+                    <a href="/docs/quantum_mechanics.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>原子核与粒子物理.pdf</h3>
+                    <p>放射性、核反应、标准模型初步。</p>
+                    <a href="/docs/nuclear_particle.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 前沿物理部分 -->
+    <section id="frontier" class="subject-section">
+        <div class="section-title">🚀 前沿物理</div>
+        <div class="section-desc">凝聚态 · 宇宙学 · 量子信息 · 复杂系统</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>凝聚态物理导论.pdf</h3>
+                    <p>能带理论、超导、拓扑材料。</p>
+                    <a href="/docs/condensed_matter.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>宇宙学与暗物质暗能量.pdf</h3>
+                    <p>宇宙膨胀、大爆炸、CMB、暗物质探测。</p>
+                    <a href="/docs/cosmology.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>量子计算与量子信息.pdf</h3>
+                    <p>量子比特、量子门、纠缠、量子算法简介。</p>
+                    <a href="/docs/quantum_computing.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
