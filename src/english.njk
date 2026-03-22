@@ -1,0 +1,105 @@
+---
+title: 英语资源 | 我的资源库
+---
+{% extends "subject-layout.njk" %}
+
+{% block sidebar_nav %}
+    <li><a href="#vocab">📚 词汇语法</a></li>
+    <li><a href="#reading">📖 阅读完形</a></li>
+    <li><a href="#writing">✍️ 写作翻译</a></li>
+{% endblock %}
+
+{% block mobile_nav %}
+    <a href="#vocab">📚 词汇语法</a>
+    <a href="#reading">📖 阅读完形</a>
+    <a href="#writing">✍️ 写作翻译</a>
+{% endblock %}
+
+{% block content %}
+    <!-- 词汇语法部分 -->
+    <section id="vocab" class="subject-section">
+        <div class="section-title">📚 词汇语法</div>
+        <div class="section-desc">高频词汇 · 语法精讲 · 短语搭配</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>高考核心词汇3500.pdf</h3>
+                    <p>按考频分类，搭配例句与记忆技巧。</p>
+                    <a href="/docs/vocab_3500.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>英语语法一本通.pdf</h3>
+                    <p>时态、语态、从句、非谓语，系统讲解。</p>
+                    <a href="/docs/grammar_guide.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>短语动词与固定搭配.pdf</h3>
+                    <p>常见短语动词辨析，完形填空高频考点。</p>
+                    <a href="/docs/phrasal_verbs.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 阅读完形部分 -->
+    <section id="reading" class="subject-section">
+        <div class="section-title">📖 阅读完形</div>
+        <div class="section-desc">阅读理解 · 完形填空 · 七选五</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>阅读理解满分攻略.pdf</h3>
+                    <p>题型分类、解题技巧、长难句分析。</p>
+                    <a href="/docs/reading_skills.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>完形填空高频词汇与逻辑.pdf</h3>
+                    <p>上下文线索、词义辨析、逻辑关系训练。</p>
+                    <a href="/docs/cloze_test.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>历年真题阅读精选.pdf</h3>
+                    <p>近五年高考阅读真题，含答案解析。</p>
+                    <a href="/docs/reading_真题.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 写作翻译部分 -->
+    <section id="writing" class="subject-section">
+        <div class="section-title">✍️ 写作翻译</div>
+        <div class="section-desc">应用文 · 读后续写 · 中英互译</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>英语应用文模板大全.pdf</h3>
+                    <p>书信、邮件、通知、倡议书等实用模板。</p>
+                    <a href="/docs/applied_writing.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>读后续写高分策略.pdf</h3>
+                    <p>情节构思、语言润色、衔接技巧。</p>
+                    <a href="/docs/continuation_writing.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>中英翻译专项突破.pdf</h3>
+                    <p>常见句式、文化差异、真题演练。</p>
+                    <a href="/docs/translation.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
