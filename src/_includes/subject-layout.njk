@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    {% include "head.njk" %}
+    <style>
+        /* 科目页面通用布局样式 */
+        .subject-layout {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .subject-content {
+            flex: 1;
+            min-width: 0;
+        }
+        /* 桌面版侧边栏 */
+        .sidebar {
+            width: 200px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 2rem;
+            align-self: start;
+            background: white;
+            border-radius: 1rem;
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid #e2e8f0;
+        }
+        .sidebar h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1e293b;
+            border-left: 3px solid #2563eb;
+            padding-left: 0.75rem;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            margin-bottom: 0.75rem;
+        }
+        .sidebar a {
+            display: block;
+            color: #475569;
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+            transition: all 0.2s;
+        }
+        .sidebar a:hover {
+            background: #f1f5f9;
+            color: #2563eb;
+        }
+
+        /* 章节样式 */
+        .subject-section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 2rem;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            border-left: 5px solid #2563eb;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .section-desc {
+            color: #475569;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        /* 文档卡片网格 */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .doc-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e2e8f0;
+        }
+        .doc-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px -8px rgba(0,0,0,0.15);
+        }
+        .doc-card-content {
+            padding: 1.25rem;
+        }
+        .doc-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+        .doc-card p {
+            color: #475569;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        .doc-btn {
+            display: inline-block;
+            background: #2563eb;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .doc-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* 移动端底部导航 */
+        .mobile-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid #e2e8f0;
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+        .mobile-bottom-nav a {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            color: #475569;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 2rem;
+            transition: all 0.2s;
+        }
+        .mobile-bottom-nav a:active {
+            background: #f1f5f9;
+            color: #2563eb;
+        }
+
+        @media (max-width: 768px) {
+            .subject-layout {
+                flex-direction: column;
+            }
+            .sidebar {
+                display: none;
+            }
+            body {
+                padding-bottom: 70px;
+            }
+            .subject-section {
+                scroll-margin-bottom: 70px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-bottom-nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% include "header.njk" %}
+
+        <div class="subject-layout">
+            <!-- 桌面侧边栏 -->
+            <div class="sidebar">
+                <h4>📑 快速导航</h4>
+                <ul>
+                    {% block sidebar_nav %}{% endblock %}
+                </ul>
+            </div>
+
+            <!-- 主要内容区 -->
+            <div class="subject-content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+
+        {% include "footer.njk" %}
+    </div>
+
+    <!-- 移动端底部导航 -->
+    <div class="mobile-bottom-nav" id="mobileBottomNav">
+        {% block mobile_nav %}{% endblock %}
+    </div>
+
+    <script>
+        // 平滑滚动（支持 .sidebar a 和 #mobileBottomNav a）
+        function setupSmoothScroll(selector) {
+            document.querySelectorAll(selector).forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+        setupSmoothScroll('.sidebar a');
+        setupSmoothScroll('#mobileBottomNav a');
+    </script>
+</body>
+</html>
