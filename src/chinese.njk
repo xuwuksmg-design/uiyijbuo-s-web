@@ -1,0 +1,105 @@
+---
+title: 语文资源 | 我的资源库
+---
+{% extends "subject-layout.njk" %}
+
+{% block sidebar_nav %}
+    <li><a href="#classical">📜 古文经典</a></li>
+    <li><a href="#modern">📖 现代文阅读</a></li>
+    <li><a href="#writing">✍️ 写作指导</a></li>
+{% endblock %}
+
+{% block mobile_nav %}
+    <a href="#classical">📜 古文经典</a>
+    <a href="#modern">📖 现代文阅读</a>
+    <a href="#writing">✍️ 写作指导</a>
+{% endblock %}
+
+{% block content %}
+    <!-- 古文经典部分 -->
+    <section id="classical" class="subject-section">
+        <div class="section-title">📜 古文经典</div>
+        <div class="section-desc">文言文阅读 · 诗词赏析 · 文化常识</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>高中必背文言文60篇.pdf</h3>
+                    <p>精选高考考纲篇目，含注释与译文，便于背诵理解。</p>
+                    <a href="/docs/classical_60.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>唐诗宋词鉴赏辞典.pdf</h3>
+                    <p>名家名作赏析，结合背景与艺术特色。</p>
+                    <a href="/docs/tang_song_poetry.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>古代文化常识大全.pdf</h3>
+                    <p>科举、官职、礼仪、称谓等考点汇总。</p>
+                    <a href="/docs/cultural_knowledge.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 现代文阅读部分 -->
+    <section id="modern" class="subject-section">
+        <div class="section-title">📖 现代文阅读</div>
+        <div class="section-desc">小说 · 散文 · 论述类文本 · 实用类文本</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>现代文阅读满分技巧.pdf</h3>
+                    <p>题型分类解析，答题模板与术语归纳。</p>
+                    <a href="/docs/modern_skills.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>中外文学名家作品选读.pdf</h3>
+                    <p>鲁迅、沈从文、海明威等经典选篇与赏析。</p>
+                    <a href="/docs/masterpieces.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>非连续性文本阅读训练.pdf</h3>
+                    <p>图表、数据、多材料组合，提升信息整合能力。</p>
+                    <a href="/docs/non_continuous.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 写作指导部分 -->
+    <section id="writing" class="subject-section">
+        <div class="section-title">✍️ 写作指导</div>
+        <div class="section-desc">议论文 · 记叙文 · 素材积累 · 真题解析</div>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>高考议论文高分攻略.pdf</h3>
+                    <p>审题立意、结构布局、论证方法，附高分范文。</p>
+                    <a href="/docs/argumentative_essay.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>作文素材精华本.pdf</h3>
+                    <p>热点人物、时政金句、哲理思辨素材。</p>
+                    <a href="/docs/writing_material.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+            <div class="doc-card">
+                <div class="doc-card-content">
+                    <h3>近五年高考作文真题解析.pdf</h3>
+                    <p>题目分析、立意方向、优秀例文评析。</p>
+                    <a href="/docs/gaokao_essays.pdf" target="_blank" class="doc-btn">在线预览</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
