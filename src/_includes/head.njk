@@ -14,8 +14,12 @@
         });"></script>
 
 <style>
-    /* 把原来每个页面都有的全局样式放这里，避免重复 */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* 基础重置 */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     body {
         font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         background: #f5f7fb;
@@ -27,6 +31,8 @@
         max-width: 1200px;
         margin: 0 auto;
     }
+
+    /* 导航栏 */
     .nav-bar {
         margin-bottom: 2rem;
         text-align: left;
@@ -42,6 +48,8 @@
     .back-link:hover {
         text-decoration: underline;
     }
+
+    /* 通用章节标题 */
     .section-title {
         font-size: 1.75rem;
         font-weight: 600;
@@ -49,53 +57,8 @@
         border-left: 4px solid #2563eb;
         padding-left: 1rem;
     }
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 3rem;
-    }
-    .card {
-        background: white;
-        border-radius: 1rem;
-        overflow: hidden;
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-    }
-    .card-content {
-        padding: 1rem;
-    }
-    .card h3 {
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-    }
-    .card p {
-        color: #475569;
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-    }
-    .btn {
-        display: inline-block;
-        background: #2563eb;
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        text-decoration: none;
-        font-size: 0.875rem;
-        font-weight: 500;
-        transition: background 0.2s;
-    }
-    .btn:hover {
-        background: #1d4ed8;
-    }
-    video {
-        width: 100%;
-        background: #000;
-    }
+
+    /* 页脚 */
     footer {
         text-align: center;
         margin-top: 3rem;
@@ -104,17 +67,107 @@
         color: #64748b;
         font-size: 0.875rem;
     }
+
+    /* 首页专用样式 */
+    .main-title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+    .main-subtitle {
+        text-align: center;
+        color: #475569;
+        margin-bottom: 2rem;
+    }
+    .subject-section {
+        margin: 3rem 0;
+    }
+    .section-heading {
+        font-size: 1.8rem;
+        font-weight: 600;
+        border-left: 5px solid #2563eb;
+        padding-left: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    .section-desc {
+        color: #64748b;
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+    }
+    /* 按钮风格的学科卡片 */
+    .subject-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+    .subject-card {
+        display: block;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        text-decoration: none;
+        color: #1e293b;
+        transition: all 0.25s ease;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        text-align: center;
+    }
+    .subject-card:hover {
+        transform: translateY(-4px);
+        background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+        border-color: #cbd5e1;
+        box-shadow: 0 12px 20px -8px rgba(0,0,0,0.15);
+    }
+    .subject-icon {
+        font-size: 3rem;
+        display: block;
+        margin-bottom: 1rem;
+    }
+    .subject-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #0f172a;
+    }
+    .subject-card p {
+        font-size: 0.85rem;
+        color: #475569;
+        line-height: 1.4;
+    }
+
+    /* 移动端适配 */
     @media (max-width: 640px) {
-        .grid {
-            grid-template-columns: 1fr;
-        }
         .section-title {
+            font-size: 1.5rem;
+        }
+        .subject-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .subject-card {
+            padding: 1.25rem;
+        }
+        .subject-icon {
+            font-size: 2.5rem;
+        }
+        .subject-card h3 {
+            font-size: 1.25rem;
+        }
+        .main-title {
+            font-size: 1.8rem;
+        }
+        .section-heading {
             font-size: 1.5rem;
         }
     }
 </style>
 
-<!-- 公共脚本：KaTeX 加载检测（可选） -->
+<!-- 公共脚本：KaTeX 加载检测 -->
 <script>
     window.addEventListener('load', function() {
         var status = {

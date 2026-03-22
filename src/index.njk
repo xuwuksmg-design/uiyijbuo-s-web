@@ -8,27 +8,61 @@ title: 资源库 | 导航
 </head>
 <body>
     <div class="container">
-        <h1>📁 我的资源库</h1>
-        <p class="subtitle">选择分类浏览</p>
-        
-        <div class="button-grid">
-            <a href="/images/" class="btn">
-                <span class="btn-icon">🖼️</span>
-                <span class="btn-title">图片作品</span>
-                <span class="btn-desc">摄影、设计、艺术图集</span>
-            </a>
-            <a href="/docs/" class="btn">
-                <span class="btn-icon">📄</span>
-                <span class="btn-title">文档资料</span>
-                <span class="btn-desc">PDF、笔记、报告</span>
-            </a>
-            <a href="/videos/" class="btn">
-                <span class="btn-icon">🎬</span>
-                <span class="btn-title">视频作品</span>
-                <span class="btn-desc">旅行记录、短片</span>
-            </a>
+        <h1 class="main-title">📚 学习资源库</h1>
+        <p class="main-subtitle">按学科分类浏览</p>
+
+        <!-- 主三科板块 -->
+        <div class="subject-section">
+            <h2 class="section-heading">主三科</h2>
+            <p class="section-desc">语文 · 数学 · 英语 | 核心基础与拓展资料</p>
+            <div class="subject-grid">
+                <!-- 语文 -->
+                <a href="/chinese/" class="subject-card">
+                    <div class="subject-icon">📖</div>
+                    <h3>语文</h3>
+                    <p>古诗文、现代文、写作素材</p>
+                </a>
+                <!-- 数学 -->
+                <a href="/math/" class="subject-card">
+                    <div class="subject-icon">📐</div>
+                    <h3>数学</h3>
+                    <p>公式推导、真题解析、竞赛资料</p>
+                </a>
+                <!-- 英语 -->
+                <a href="/english/" class="subject-card">
+                    <div class="subject-icon">🌍</div>
+                    <h3>英语</h3>
+                    <p>词汇、语法、听力、阅读</p>
+                </a>
+            </div>
         </div>
-        
+
+        <!-- 理综板块 -->
+        <div class="subject-section">
+            <h2 class="section-heading">理综</h2>
+            <p class="section-desc">物理 · 化学 · 生物 | 实验与理论结合</p>
+            <div class="subject-grid">
+                <!-- 物理 -->
+                <a href="/physics/" class="subject-card">
+                    <div class="subject-icon">⚛️</div>
+                    <h3>物理</h3>
+                    <p>力学、电磁学、热学、近代物理</p>
+                </a>
+                <!-- 化学 -->
+                <a href="/chemistry/" class="subject-card">
+                    <div class="subject-icon">🧪</div>
+                    <h3>化学</h3>
+                    <p>有机、无机、实验、工业流程</p>
+                </a>
+                <!-- 生物 -->
+                <a href="/biology/" class="subject-card">
+                    <div class="subject-icon">🧬</div>
+                    <h3>生物</h3>
+                    <p>分子与细胞、遗传、生态</p>
+                </a>
+            </div>
+        </div>
+
         {% include "footer.njk" %}
     </div>
 </body>
