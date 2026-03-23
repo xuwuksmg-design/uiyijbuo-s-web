@@ -1,0 +1,60 @@
+<style>
+    @media (max-width: 768px) {
+        /* 布局改为单列 */
+        .subject-layout {
+            flex-direction: column;
+        }
+        /* 隐藏桌面侧边栏 */
+        .sidebar {
+            display: none;
+        }
+        /* 显示移动端底部导航 */
+        .mobile-bottom-nav {
+            display: flex;
+        }
+        /* 增加底部留白，避免内容被遮挡 */
+        body {
+            padding-bottom: 70px;
+        }
+        .subject-section {
+            scroll-margin-bottom: 70px;
+        }
+        /* 调整搜索框大小 */
+        .search-box {
+            padding: 0.6rem 0.9rem;
+            font-size: 0.9rem;
+        }
+        /* 卡片网格单列 */
+        .subject-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .subject-card {
+            padding: 1.25rem;
+        }
+        .subject-icon {
+            font-size: 2.5rem;
+        }
+        .subject-card h3 {
+            font-size: 1.25rem;
+        }
+        .main-title {
+            font-size: 1.8rem;
+        }
+        .section-heading {
+            font-size: 1.5rem;
+        }
+        /* 文档卡片网格 */
+        .doc-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        /* 通用标题缩小 */
+        .section-title {
+            font-size: 1.5rem;
+        }
+        .subject-section {
+            scroll-margin-top: 1rem;
+        }
+    }
+</style>

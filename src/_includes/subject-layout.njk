@@ -2,229 +2,16 @@
 <html lang="zh-CN">
 <head>
     {% include "head.njk" %}
-    <style>
-        /* 科目页面通用布局样式 */
-        .subject-layout {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-        .subject-content {
-            flex: 1;
-            min-width: 0;
-        }
-        /* 桌面版侧边栏 */
-        .sidebar {
-            width: 200px;
-            flex-shrink: 0;
-            position: sticky;
-            top: 2rem;
-            align-self: start;
-            background: var(--bg-card);
-            border-radius: 1rem;
-            padding: 1.25rem;
-            box-shadow: 0 4px 6px -1px var(--shadow);
-            border: 1px solid var(--border-color);
-        }
-        .sidebar h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            border-left: 3px solid var(--accent-primary);
-            padding-left: 0.75rem;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .sidebar li {
-            margin-bottom: 0.75rem;
-        }
-        .sidebar a {
-            display: block;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.375rem;
-            transition: all 0.2s;
-        }
-        .sidebar a:hover {
-            background: var(--border-color);
-            color: var(--accent-primary);
-        }
-
-        /* 章节样式 */
-        .subject-section {
-            margin-bottom: 3rem;
-            scroll-margin-top: 2rem;
-        }
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            border-left: 5px solid var(--accent-primary);
-            padding-left: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .section-desc {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-        }
-
-        /* 文档卡片网格 */
-        .doc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        .doc-card {
-            background: var(--bg-card);
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px var(--shadow);
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid var(--border-color);
-        }
-        .doc-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 20px -8px var(--shadow);
-        }
-        .doc-card-content {
-            padding: 1.25rem;
-        }
-        .doc-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-        .doc-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-        .doc-btn {
-            display: inline-block;
-            background: var(--accent-primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-        .doc-btn:hover {
-            background: var(--accent-hover);
-        }
-
-        /* 移动端底部导航 */
-        .mobile-bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg-card);
-            backdrop-filter: blur(8px);
-            border-top: 1px solid var(--border-color);
-            padding: 0.75rem 1rem;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 -2px 10px var(--shadow);
-        }
-        .mobile-bottom-nav a {
-            flex: 1;
-            text-align: center;
-            padding: 0.5rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border-radius: 2rem;
-            transition: all 0.2s;
-        }
-        .mobile-bottom-nav a:active {
-            background: var(--border-color);
-            color: var(--accent-primary);
-        }
-
-        /* ========= 搜索框样式 ========= */
-        .search-container {
-            margin: 1rem 0 2rem 0;
-        }
-        .search-box {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 2rem;
-            color: var(--text-primary);
-            outline: none;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 4px var(--shadow);
-        }
-        .search-box:focus {
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb, 37, 99, 235), 0.2);
-        }
-        .search-box::placeholder {
-            color: var(--text-secondary);
-            opacity: 0.7;
-        }
-        /* 高亮样式 */
-        mark {
-            background: rgba(37, 99, 235, 0.2);
-            color: inherit;
-            border-radius: 0.2rem;
-            padding: 0 0.1rem;
-        }
-        [data-theme="dark"] mark {
-            background: rgba(59, 130, 246, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            .subject-layout {
-                flex-direction: column;
-            }
-            .sidebar {
-                display: none;
-            }
-            body {
-                padding-bottom: 70px;
-            }
-            .subject-section {
-                scroll-margin-bottom: 70px;
-            }
-            .search-box {
-                padding: 0.6rem 0.9rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .mobile-bottom-nav {
-                display: none;
-            }
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         {% include "header.njk" %}
 
-        <!-- 搜索框 -->
         <div class="search-container">
             <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜索文档标题或描述..." autocomplete="off">
         </div>
 
         <div class="subject-layout">
-            <!-- 桌面侧边栏 -->
             <div class="sidebar">
                 <h4>📑 快速导航</h4>
                 <ul>
@@ -232,7 +19,6 @@
                 </ul>
             </div>
 
-            <!-- 主要内容区 -->
             <div class="subject-content">
                 {% block content %}{% endblock %}
             </div>
@@ -241,7 +27,6 @@
         {% include "footer.njk" %}
     </div>
 
-    <!-- 移动端底部导航 -->
     <div class="mobile-bottom-nav" id="mobileBottomNav">
         {% block mobile_nav %}{% endblock %}
     </div>
@@ -266,16 +51,13 @@
         setupSmoothScroll('.sidebar a');
         setupSmoothScroll('#mobileBottomNav a');
 
-        // 搜索功能
+        // 搜索功能（保持不变）
         function initSearch() {
             const searchInput = document.getElementById('searchInput');
             if (!searchInput) return;
-
-            // 获取所有卡片
             const cards = document.querySelectorAll('.doc-card');
             if (!cards.length) return;
 
-            // 去除高亮辅助函数
             function removeHighlights(element) {
                 element.querySelectorAll('mark').forEach(mark => {
                     const parent = mark.parentNode;
@@ -284,12 +66,11 @@
                 });
             }
 
-            // 高亮关键词
             function highlightKeyword(element, keyword) {
                 if (!keyword) return;
                 const regex = new RegExp(`(${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
                 const walk = (node) => {
-                    if (node.nodeType === 3) { // 文本节点
+                    if (node.nodeType === 3) {
                         const match = node.textContent.match(regex);
                         if (match) {
                             const span = document.createElement('span');
@@ -311,7 +92,6 @@
                 walk(element);
             }
 
-            // 搜索过滤
             function filterCards() {
                 const keyword = searchInput.value.trim();
                 const lowerKeyword = keyword.toLowerCase();
@@ -322,12 +102,10 @@
                     const title = titleElem ? titleElem.textContent : '';
                     const desc = descElem ? descElem.textContent : '';
 
-                    // 匹配条件
                     const matches = !keyword || title.toLowerCase().includes(lowerKeyword) || desc.toLowerCase().includes(lowerKeyword);
 
                     if (matches) {
                         card.style.display = '';
-                        // 先清除旧高亮，再应用新高亮
                         removeHighlights(card);
                         if (keyword) {
                             if (titleElem) highlightKeyword(titleElem, keyword);
@@ -335,17 +113,13 @@
                         }
                     } else {
                         card.style.display = 'none';
-                        // 清除高亮（避免残留）
                         removeHighlights(card);
                     }
                 });
             }
 
-            // 监听输入
             searchInput.addEventListener('input', filterCards);
         }
-
-        // 页面加载完成后初始化搜索
         document.addEventListener('DOMContentLoaded', initSearch);
     </script>
 </body>
