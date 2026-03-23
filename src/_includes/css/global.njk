@@ -209,6 +209,66 @@
         to   { transform: rotate(360deg); }
     }
 
+    /* ========= 首页新布局基础样式 ========= */
+    .home-layout {
+        display: flex;
+        flex-direction: column; /* 手机端默认上下堆叠 */
+        gap: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        flex: 1;
+    }
+    .home-left, .home-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    /* 寄语卡片与名言卡片通用外观 */
+    .message-card, .quote-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 4px 6px -1px var(--shadow);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .message-card:hover, .quote-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px -3px var(--shadow);
+    }
+
+    /* 左侧寄语卡片专属定制（带一点温柔的光晕） */
+    .message-card {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+        line-height: 1.8;
+        color: var(--accent-primary);
+        background: linear-gradient(135deg, rgba(var(--accent-primary-rgb), 0.08), rgba(var(--accent-primary-rgb), 0.02));
+        border-color: rgba(var(--accent-primary-rgb), 0.2);
+    }
+
+    /* 右侧上方名言卡片 */
+    .quote-card {
+        font-size: 1.1rem;
+        color: var(--text-primary);
+        font-style: italic;
+        padding: 1.5rem 2rem;
+        border-left: 4px solid var(--accent-primary); /* 经典的左边框名言样式 */
+    }
+    .quote-author {
+        margin-top: 0.8rem;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        font-style: normal;
+        font-weight: 600;
+        text-align: right;
+    }
+
     /* ========= 首页卡片（通用） ========= */
     .subject-grid {
         display: grid;

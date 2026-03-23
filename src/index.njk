@@ -10,39 +10,56 @@ title: 资源库 | 导航
     {% include "header.njk" %}
 
     <div class="container">
-        <!-- 卡片组容器，桌面端会移至右下角 -->
-        <div class="home-cards-wrapper">
-            <div class="subject-grid">
-                <a href="/chinese/" class="subject-card">
-                    <div class="subject-icon">📖</div>
-                    <h3>语文</h3>
-                    <p>古诗文、现代文、写作素材</p>
-                </a>
-                <a href="/math/" class="subject-card">
-                    <div class="subject-icon">📐</div>
-                    <h3>数学</h3>
-                    <p>公式推导、真题解析、竞赛资料</p>
-                </a>
-                <a href="/english/" class="subject-card">
-                    <div class="subject-icon">🌍</div>
-                    <h3>英语</h3>
-                    <p>词汇、语法、听力、阅读</p>
-                </a>
-                <a href="/physics/" class="subject-card">
-                    <div class="subject-icon">⚛️</div>
-                    <h3>物理</h3>
-                    <p>力学、电磁学、热学、近代物理</p>
-                </a>
-                <a href="/chemistry/" class="subject-card">
-                    <div class="subject-icon">🧪</div>
-                    <h3>化学</h3>
-                    <p>有机、无机、实验、工业流程</p>
-                </a>
-                <a href="/biology/" class="subject-card">
-                    <div class="subject-icon">🧬</div>
-                    <h3>生物</h3>
-                    <p>分子与细胞、遗传、生态</p>
-                </a>
+                <!-- 主页左右分栏布局 -->
+        <div class="home-layout">
+            <!-- 左半部分：网站寄语 -->
+            <div class="home-left">
+                <div class="message-card">
+                    <p>愿你我向往的未来，<br>已经在某个世界实现。</p>
+                </div>
+            </div>
+
+            <!-- 右半部分：名言与学科入口 -->
+            <div class="home-right">
+                <!-- 上半部分：名人名言 -->
+                <div class="quote-card">
+                    <p>“学问是异常珍贵的东西，从任何源泉吸收都不可耻。”</p>
+                    <span class="quote-author">—— 托马斯·阿奎那</span>
+                </div>
+
+                <!-- 下半部分：六个学科入口 -->
+                <div class="subject-grid">
+                    <a href="/chinese/" class="subject-card">
+                        <div class="subject-icon">📖</div>
+                        <h3>语文</h3>
+                        <p>古诗文、现代文、写作素材</p>
+                    </a>
+                    <a href="/math/" class="subject-card">
+                        <div class="subject-icon">📐</div>
+                        <h3>数学</h3>
+                        <p>公式推导、真题解析、竞赛资料</p>
+                    </a>
+                    <a href="/english/" class="subject-card">
+                        <div class="subject-icon">🌍</div>
+                        <h3>英语</h3>
+                        <p>词汇、语法、听力、阅读</p>
+                    </a>
+                    <a href="/physics/" class="subject-card">
+                        <div class="subject-icon">⚛️</div>
+                        <h3>物理</h3>
+                        <p>力学、电磁学、热学、近代物理</p>
+                    </a>
+                    <a href="/chemistry/" class="subject-card">
+                        <div class="subject-icon">🧪</div>
+                        <h3>化学</h3>
+                        <p>有机、无机、实验、工业流程</p>
+                    </a>
+                    <a href="/biology/" class="subject-card">
+                        <div class="subject-icon">🧬</div>
+                        <h3>生物</h3>
+                        <p>分子与细胞、遗传、生态</p>
+                    </a>
+                </div>
             </div>
         </div>
 

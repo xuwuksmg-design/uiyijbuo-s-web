@@ -29,36 +29,45 @@
             gap: 2rem;         /* 保持卡片之间的舒适间距 */
         }
 
-        /* ========= 主页专用样式 ========= */
-        /* 主页卡片容器：整体靠右下 */
-        .home-cards-wrapper {
-            display: flex;
-            justify-content: flex-end;  /* 整体向右对齐 */
-            margin-top: 4rem;           /* 适当下移 */
-            margin-bottom: 2rem;
-            margin-right: 1.5rem;       /* 向右微调 */
+                /* ========= 主页左右分栏专用样式 (桌面端) ========= */
+        .home-layout {
+            flex-direction: row; /* 在电脑上变成左右横向排列 */
+            align-items: stretch; /* 让左边的小卡片自动拉伸对齐高度 */
         }
 
-        /* 卡片网格强制三列两行 */
-        .home-cards-wrapper .subject-grid {
-            grid-template-columns: repeat(3, minmax(240px, 280px)); /* 固定宽度或自适应 */
-            gap: 1rem;                  /* 缩小卡片上下左右缝隙 */
-            max-width: 900px;           /* 限制最大宽度，避免太宽 */
-            width: 100%;
+        .home-left {
+            width: 30%; /* 左侧寄语区占 30% 宽度 */
+            flex-shrink: 0;
         }
 
-        /* 可选：减小卡片内边距，让卡片更紧凑 */
-        .home-cards-wrapper .subject-card {
-            padding: 1rem;              /* 原全局为1.5rem，这里缩小 */
+        .home-right {
+            width: 70%; /* 右侧内容区占 70% 宽度 */
+            flex-grow: 1;
         }
-        .home-cards-wrapper .subject-icon {
-            font-size: 2.2rem;          /* 原3rem，缩小 */
+
+        /* 左侧寄语卡片在大屏时填满整个左侧高度 */
+        .message-card {
+            height: 100%;
+            padding: 3rem;
+            font-size: 1.4rem; /* 电脑上字稍微大一点更有感觉 */
         }
-        .home-cards-wrapper .subject-card h3 {
-            font-size: 1.1rem;          /* 原1.4rem，缩小 */
+
+        /* 强制右下角的学科卡片网格为一行三列 */
+        .home-right .subject-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 0; /* 配合 flex 的 gap */
         }
-        .home-cards-wrapper .subject-card p {
-            font-size: 0.8rem;          /* 原0.85rem，略小 */
+
+        /* 微调桌面端卡片的内部间距 */
+        .home-right .subject-card {
+            padding: 1.25rem;
+        }
+        .home-right .subject-icon {
+            font-size: 2.2rem;
+        }
+        .home-right .subject-card h3 {
+            font-size: 1.2rem;
         }
     }
 </style>
