@@ -14,6 +14,14 @@
         });"></script>
 
 <style>
+    :root {
+        --primary-color: #2563eb;
+        --secondary-color: #7c3aed;
+        --primary-hover: #1d4ed8;
+        --bg-light: #f5f7fb;
+        --text-dark: #1e293b;
+        --text-muted: #475569;
+    }
     /* 基础重置 */
     * {
         margin: 0;
@@ -22,8 +30,8 @@
     }
     body {
         font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        background: #f5f7fb;
-        color: #1e293b;
+        background: var(--bg-light);
+        color: var(--text-dark);
         line-height: 1.5;
         padding: 2rem 1rem;
     }
@@ -32,31 +40,28 @@
         margin: 0 auto;
     }
 
-    /* 导航栏 */
+    /* 导航栏右对齐 */
     .nav-bar {
         margin-bottom: 2rem;
-        text-align: left;
+        text-align: right;
     }
- .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: #2563eb;
-    color: white;
-    padding: 0.6rem 1.2rem;
-    border-radius: 2rem;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.back-link:hover {
-    background: #1d4ed8;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-}
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--primary-color);
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 2rem;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
     .back-link:hover {
-        text-decoration: underline;
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
 
     /* 通用章节标题 */
@@ -64,7 +69,7 @@
         font-size: 1.75rem;
         font-weight: 600;
         margin: 1rem 0 1.5rem 0;
-        border-left: 4px solid #2563eb;
+        border-left: 4px solid var(--primary-color);
         padding-left: 1rem;
     }
 
@@ -74,7 +79,7 @@
         margin-top: 3rem;
         padding-top: 2rem;
         border-top: 1px solid #e2e8f0;
-        color: #64748b;
+        color: var(--text-muted);
         font-size: 0.875rem;
     }
 
@@ -83,14 +88,14 @@
         font-size: 2.5rem;
         text-align: center;
         margin-bottom: 0.5rem;
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
         background-clip: text;
         -webkit-background-clip: text;
         color: transparent;
     }
     .main-subtitle {
         text-align: center;
-        color: #475569;
+        color: var(--text-muted);
         margin-bottom: 2rem;
     }
     .subject-section {
@@ -99,12 +104,12 @@
     .section-heading {
         font-size: 1.8rem;
         font-weight: 600;
-        border-left: 5px solid #2563eb;
+        border-left: 5px solid var(--primary-color);
         padding-left: 1rem;
         margin-bottom: 0.5rem;
     }
     .section-desc {
-        color: #64748b;
+        color: var(--text-muted);
         margin-bottom: 1.5rem;
         padding-left: 1.5rem;
     }
@@ -121,7 +126,7 @@
         border-radius: 1rem;
         padding: 1.5rem;
         text-decoration: none;
-        color: #1e293b;
+        color: var(--text-dark);
         transition: all 0.25s ease;
         border: 1px solid #e2e8f0;
         box-shadow: 0 2px 4px rgba(0,0,0,0.02);
@@ -146,7 +151,7 @@
     }
     .subject-card p {
         font-size: 0.85rem;
-        color: #475569;
+        color: var(--text-muted);
         line-height: 1.4;
     }
 
@@ -160,7 +165,7 @@
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(4px);
         z-index: 9999;
-        display: none;          /* 默认隐藏，由 JS 控制显示 */
+        display: flex;           /* 初始显示 */
         align-items: center;
         justify-content: center;
         transition: opacity 0.3s ease;
@@ -240,7 +245,7 @@
             }
         }
 
-        // 2. 隐藏加载界面（新增）
+        // 2. 隐藏加载界面
         const loader = document.getElementById('loader');
         if (loader) {
             loader.style.opacity = '0';
