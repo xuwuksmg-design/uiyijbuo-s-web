@@ -203,43 +203,65 @@
 </style>
 
 <!-- 公共脚本：KaTeX 加载检测 + 加载器隐藏逻辑 -->
+<!-- 公共脚本：KaTeX 加载检测 + 加载器优化显示 -->
 <script>
-    window.addEventListener('load', function() {
-        // 1. KaTeX 加载检测（原有逻辑）
-        var status = {
-            katex: typeof katex !== 'undefined',
-            renderMathInElement: typeof renderMathInElement !== 'undefined'
-        };
-        console.log('🔍 KaTeX 加载状态:', status);
-        if (!status.katex || !status.renderMathInElement) {
-            var msg = '❌ 数学公式加载失败！请检查网络后刷新页面。';
-            alert(msg);
-            var warning = document.createElement('div');
-            warning.style.backgroundColor = '#ffebee';
-            warning.style.color = '#c62828';
-            warning.style.padding = '12px 16px';
-            warning.style.margin = '0 auto 16px auto';
-            warning.style.borderRadius = '8px';
-            warning.style.textAlign = 'center';
-            warning.style.fontSize = '14px';
-            warning.style.maxWidth = '800px';
-            warning.innerHTML = msg;
-            var container = document.querySelector('.container');
-            if (container && container.firstChild) {
-                container.insertBefore(warning, container.firstChild);
+    (function() {
+        // 最小显示时间（毫秒），确保动画不会一闪而过
+        const MIN_DISPLAY_MS = 1500; // 1.5 秒，可根据需要调整
+
+        let startTime = Date.now();
+        let hideTimeout = null;
+
+        function hideLoader() {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 300);
             }
         }
 
-        // 2. 隐藏加载界面并清除标志
-        const loader = document.getElementById('loader');
-        if (loader) {
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.style.display = 'none';
-                loader.style.opacity = ''; // 恢复以备下次使用
-            }, 300);
-        }
-        // 清除跳转标志，避免刷新时重复显示
-        sessionStorage.removeItem('showLoader');
-    });
+        // 页面加载完成后，确保动画至少显示 MIN_DISPLAY_MS 毫秒
+        window.addEventListener('load', function() {
+            // 1. KaTeX 加载检测（保留原有功能）
+            var status = {
+                katex: typeof katex !== 'undefined',
+                renderMathInElement: typeof renderMathInElement !== 'undefined'
+            };
+            console.log('🔍 KaTeX 加载状态:', status);
+            if (!status.katex || !status.renderMathInElement) {
+                var msg = '❌ 数学公式加载失败！请检查网络后刷新页面。';
+                alert(msg);
+                var warning = document.createElement('div');
+                warning.style.backgroundColor = '#ffebee';
+                warning.style.color = '#c62828';
+                warning.style.padding = '12px 16px';
+                warning.style.margin = '0 auto 16px auto';
+                warning.style.borderRadius = '8px';
+                warning.style.textAlign = 'center';
+                warning.style.fontSize = '14px';
+                warning.style.maxWidth = '800px';
+                warning.innerHTML = msg;
+                var container = document.querySelector('.container');
+                if (container && container.firstChild) {
+                    container.insertBefore(warning, container.firstChild);
+                }
+            }
+
+            // 2. 隐藏加载界面（但确保至少显示 MIN_DISPLAY_MS）
+            const elapsed = Date.now() - startTime;
+            const remaining = Math.max(0, MIN_DISPLAY_MS - elapsed);
+            if (hideTimeout) clearTimeout(hideTimeout);
+            hideTimeout = setTimeout(hideLoader, remaining);
+        });
+
+        // 如果页面是从缓存（bfcache）恢复，立即隐藏加载器（因为此时页面已经完全加载）
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                if (hideTimeout) clearTimeout(hideTimeout);
+                hideLoader();
+            }
+        });
+    })();
 </script>
