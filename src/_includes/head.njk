@@ -266,7 +266,7 @@
         }
     })();
 
-    // 隐藏加载界面的函数（确保只执行一次，并完整移除）
+    // 隐藏加载界面并彻底移除元素
     let loaderHidden = false;
     function hideLoader() {
         if (loaderHidden) return;
@@ -276,18 +276,20 @@
         loaderHidden = true;
         loader.style.opacity = '0';
 
-        // 监听过渡结束事件，完成后彻底移除
+        // 监听过渡结束，移除元素（彻底清除）
         const onTransitionEnd = () => {
-            loader.style.display = 'none';
-            loader.removeEventListener('transitionend', onTransitionEnd);
+            if (loader.parentNode) {
+                loader.removeEventListener('transitionend', onTransitionEnd);
+                loader.remove();  // 直接移除元素，不留残留
+            }
         };
         loader.addEventListener('transitionend', onTransitionEnd);
 
         // 后备：如果过渡事件未触发（例如元素被隐藏或浏览器不支持），300ms后强制移除
         setTimeout(() => {
-            if (loader.style.display !== 'none') {
-                loader.style.display = 'none';
+            if (loader.parentNode) {
                 loader.removeEventListener('transitionend', onTransitionEnd);
+                loader.remove();
             }
         }, 300);
     }
