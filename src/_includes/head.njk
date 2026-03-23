@@ -15,13 +15,27 @@
 
 <style>
     :root {
-        --primary-color: #2563eb;
-        --secondary-color: #7c3aed;
-        --primary-hover: #1d4ed8;
-        --bg-light: #f5f7fb;
-        --text-dark: #1e293b;
-        --text-muted: #475569;
+        --bg-primary: #f5f7fb;
+        --bg-card: #ffffff;
+        --text-primary: #1e293b;
+        --text-secondary: #475569;
+        --accent-primary: #2563eb;
+        --accent-hover: #1d4ed8;
+        --border-color: #e2e8f0;
+        --shadow: rgba(0,0,0,0.1);
     }
+
+    [data-theme="dark"] {
+        --bg-primary: #0f172a;
+        --bg-card: #1e293b;
+        --text-primary: #e2e8f0;
+        --text-secondary: #94a3b8;
+        --accent-primary: #3b82f6;
+        --accent-hover: #60a5fa;
+        --border-color: #334155;
+        --shadow: rgba(0,0,0,0.3);
+    }
+
     /* 基础重置 */
     * {
         margin: 0;
@@ -30,10 +44,11 @@
     }
     body {
         font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        background: var(--bg-light);
-        color: var(--text-dark);
+        background: var(--bg-primary);
+        color: var(--text-primary);
         line-height: 1.5;
         padding: 2rem 1rem;
+        transition: background 0.3s ease, color 0.2s ease;
     }
     .container {
         max-width: 1200px;
@@ -49,19 +64,38 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        background: var(--primary-color);
+        background: var(--accent-primary);
         color: white;
         padding: 0.6rem 1.2rem;
         border-radius: 2rem;
         text-decoration: none;
         font-weight: 500;
         transition: all 0.2s ease;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px var(--shadow);
     }
     .back-link:hover {
-        background: var(--primary-hover);
+        background: var(--accent-hover);
         transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 8px var(--shadow);
+    }
+
+    /* 主题切换按钮 */
+    .theme-toggle {
+        background: var(--accent-primary);
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        padding: 0.6rem 1rem;
+        border-radius: 2rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 4px var(--shadow);
+        margin-left: 0.5rem;
+    }
+    .theme-toggle:hover {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px var(--shadow);
     }
 
     /* 通用章节标题 */
@@ -69,7 +103,7 @@
         font-size: 1.75rem;
         font-weight: 600;
         margin: 1rem 0 1.5rem 0;
-        border-left: 4px solid var(--primary-color);
+        border-left: 4px solid var(--accent-primary);
         padding-left: 1rem;
     }
 
@@ -78,8 +112,8 @@
         text-align: center;
         margin-top: 3rem;
         padding-top: 2rem;
-        border-top: 1px solid #e2e8f0;
-        color: var(--text-muted);
+        border-top: 1px solid var(--border-color);
+        color: var(--text-secondary);
         font-size: 0.875rem;
     }
 
@@ -88,14 +122,14 @@
         font-size: 2.5rem;
         text-align: center;
         margin-bottom: 0.5rem;
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        background: linear-gradient(135deg, var(--accent-primary), #7c3aed);
         background-clip: text;
         -webkit-background-clip: text;
         color: transparent;
     }
     .main-subtitle {
         text-align: center;
-        color: var(--text-muted);
+        color: var(--text-secondary);
         margin-bottom: 2rem;
     }
     .subject-section {
@@ -104,12 +138,12 @@
     .section-heading {
         font-size: 1.8rem;
         font-weight: 600;
-        border-left: 5px solid var(--primary-color);
+        border-left: 5px solid var(--accent-primary);
         padding-left: 1rem;
         margin-bottom: 0.5rem;
     }
     .section-desc {
-        color: var(--text-muted);
+        color: var(--text-secondary);
         margin-bottom: 1.5rem;
         padding-left: 1.5rem;
     }
@@ -122,21 +156,20 @@
     }
     .subject-card {
         display: block;
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        background: var(--bg-card);
         border-radius: 1rem;
         padding: 1.5rem;
         text-decoration: none;
-        color: var(--text-dark);
+        color: var(--text-primary);
         transition: all 0.25s ease;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 2px 4px var(--shadow);
         text-align: center;
     }
     .subject-card:hover {
         transform: translateY(-4px);
-        background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-        border-color: #cbd5e1;
-        box-shadow: 0 12px 20px -8px rgba(0,0,0,0.15);
+        box-shadow: 0 12px 20px -8px var(--shadow);
+        border-color: var(--accent-primary);
     }
     .subject-icon {
         font-size: 3rem;
@@ -147,11 +180,11 @@
         font-size: 1.4rem;
         margin-bottom: 0.5rem;
         font-weight: 600;
-        color: #0f172a;
+        color: var(--text-primary);
     }
     .subject-card p {
         font-size: 0.85rem;
-        color: var(--text-muted);
+        color: var(--text-secondary);
         line-height: 1.4;
     }
 
@@ -162,10 +195,10 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.95);
+        background: var(--bg-primary);
         backdrop-filter: blur(4px);
         z-index: 9999;
-        display: flex;           /* 初始显示 */
+        display: flex;
         align-items: center;
         justify-content: center;
         transition: opacity 0.3s ease;
@@ -175,15 +208,15 @@
         height: 80px;
         border-radius: 50%;
         background: conic-gradient(
-            #E74C3C 0deg 60deg,   /* 语文 - 红色 */
-            #F39C12 60deg 120deg, /* 数学 - 橙色 */
-            #2ECC71 120deg 180deg,/* 英语 - 绿色 */
-            #3498DB 180deg 240deg,/* 物理 - 蓝色 */
-            #9B59B6 240deg 300deg,/* 化学 - 紫色 */
-            #1ABC9C 300deg 360deg /* 生物 - 青色 */
+            #E74C3C 0deg 60deg,
+            #F39C12 60deg 120deg,
+            #2ECC71 120deg 180deg,
+            #3498DB 180deg 240deg,
+            #9B59B6 240deg 300deg,
+            #1ABC9C 300deg 360deg
         );
         animation: spin 2s linear infinite;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        box-shadow: 0 0 10px var(--shadow);
     }
     @keyframes spin {
         from { transform: rotate(0deg); }
@@ -217,10 +250,24 @@
     }
 </style>
 
-<!-- 公共脚本：KaTeX 加载检测 + 加载器隐藏 -->
+<!-- 公共脚本：KaTeX 加载检测 + 加载器隐藏 + 主题切换 -->
 <script>
+    // 立即设置主题（同步执行，在页面渲染前）
+    (function() {
+        let theme = localStorage.getItem('site-theme');
+        if (!theme) {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            theme = prefersDark ? 'dark' : 'light';
+        }
+        if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+        }
+    })();
+
     window.addEventListener('load', function() {
-        // 1. KaTeX 加载检测（原有逻辑）
+        // KaTeX 加载检测
         var status = {
             katex: typeof katex !== 'undefined',
             renderMathInElement: typeof renderMathInElement !== 'undefined'
@@ -245,7 +292,7 @@
             }
         }
 
-        // 2. 隐藏加载界面
+        // 隐藏加载界面
         const loader = document.getElementById('loader');
         if (loader) {
             loader.style.opacity = '0';
@@ -253,5 +300,28 @@
                 loader.style.display = 'none';
             }, 300);
         }
+    });
+
+    // 主题切换按钮绑定
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('theme-toggle');
+        if (!toggleBtn) return;
+
+        function applyTheme(theme) {
+            const html = document.documentElement;
+            if (theme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+            } else {
+                html.removeAttribute('data-theme');
+            }
+            localStorage.setItem('site-theme', theme);
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            applyTheme(isDark ? 'light' : 'dark');
+        }
+
+        toggleBtn.addEventListener('click', toggleTheme);
     });
 </script>
