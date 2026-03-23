@@ -153,6 +153,41 @@
             color: var(--accent-primary);
         }
 
+        /* ========= 搜索框样式 ========= */
+        .search-container {
+            margin: 1rem 0 2rem 0;
+        }
+        .search-box {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px var(--shadow);
+        }
+        .search-box:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb, 37, 99, 235), 0.2);
+        }
+        .search-box::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+        /* 高亮样式 */
+        mark {
+            background: rgba(37, 99, 235, 0.2);
+            color: inherit;
+            border-radius: 0.2rem;
+            padding: 0 0.1rem;
+        }
+        [data-theme="dark"] mark {
+            background: rgba(59, 130, 246, 0.3);
+        }
+
         @media (max-width: 768px) {
             .subject-layout {
                 flex-direction: column;
@@ -166,6 +201,10 @@
             .subject-section {
                 scroll-margin-bottom: 70px;
             }
+            .search-box {
+                padding: 0.6rem 0.9rem;
+                font-size: 0.9rem;
+            }
         }
 
         @media (min-width: 769px) {
@@ -178,6 +217,11 @@
 <body>
     <div class="container">
         {% include "header.njk" %}
+
+        <!-- 搜索框 -->
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜索文档标题或描述..." autocomplete="off">
+        </div>
 
         <div class="subject-layout">
             <!-- 桌面侧边栏 -->
@@ -221,6 +265,88 @@
         }
         setupSmoothScroll('.sidebar a');
         setupSmoothScroll('#mobileBottomNav a');
+
+        // 搜索功能
+        function initSearch() {
+            const searchInput = document.getElementById('searchInput');
+            if (!searchInput) return;
+
+            // 获取所有卡片
+            const cards = document.querySelectorAll('.doc-card');
+            if (!cards.length) return;
+
+            // 去除高亮辅助函数
+            function removeHighlights(element) {
+                element.querySelectorAll('mark').forEach(mark => {
+                    const parent = mark.parentNode;
+                    parent.replaceChild(document.createTextNode(mark.textContent), mark);
+                    parent.normalize();
+                });
+            }
+
+            // 高亮关键词
+            function highlightKeyword(element, keyword) {
+                if (!keyword) return;
+                const regex = new RegExp(`(${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                const walk = (node) => {
+                    if (node.nodeType === 3) { // 文本节点
+                        const match = node.textContent.match(regex);
+                        if (match) {
+                            const span = document.createElement('span');
+                            let lastIndex = 0;
+                            let html = '';
+                            node.textContent.replace(regex, (match, p1, offset) => {
+                                html += node.textContent.substring(lastIndex, offset);
+                                html += `<mark>${match}</mark>`;
+                                lastIndex = offset + match.length;
+                            });
+                            html += node.textContent.substring(lastIndex);
+                            span.innerHTML = html;
+                            node.parentNode.replaceChild(span, node);
+                        }
+                    } else if (node.nodeType === 1 && !['SCRIPT', 'STYLE', 'MARK'].includes(node.tagName)) {
+                        node.childNodes.forEach(walk);
+                    }
+                };
+                walk(element);
+            }
+
+            // 搜索过滤
+            function filterCards() {
+                const keyword = searchInput.value.trim();
+                const lowerKeyword = keyword.toLowerCase();
+
+                cards.forEach(card => {
+                    const titleElem = card.querySelector('h3');
+                    const descElem = card.querySelector('p');
+                    const title = titleElem ? titleElem.textContent : '';
+                    const desc = descElem ? descElem.textContent : '';
+
+                    // 匹配条件
+                    const matches = !keyword || title.toLowerCase().includes(lowerKeyword) || desc.toLowerCase().includes(lowerKeyword);
+
+                    if (matches) {
+                        card.style.display = '';
+                        // 先清除旧高亮，再应用新高亮
+                        removeHighlights(card);
+                        if (keyword) {
+                            if (titleElem) highlightKeyword(titleElem, keyword);
+                            if (descElem) highlightKeyword(descElem, keyword);
+                        }
+                    } else {
+                        card.style.display = 'none';
+                        // 清除高亮（避免残留）
+                        removeHighlights(card);
+                    }
+                });
+            }
+
+            // 监听输入
+            searchInput.addEventListener('input', filterCards);
+        }
+
+        // 页面加载完成后初始化搜索
+        document.addEventListener('DOMContentLoaded', initSearch);
     </script>
 </body>
 </html>
