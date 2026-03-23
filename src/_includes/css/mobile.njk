@@ -1,6 +1,6 @@
 <style>
     @media (max-width: 768px) {
-        /* 布局改为单列 */
+        /* ========= 基础布局修改 ========= */
         .subject-layout {
             flex-direction: column;
         }
@@ -8,24 +8,123 @@
         .sidebar {
             display: none;
         }
-        /* 显示移动端底部导航 */
-        .mobile-bottom-nav {
+
+        /* ========= 新增：右上角悬浮菜单按钮 ========= */
+        .mobile-menu-btn {
+            position: fixed;
+            top: 4.5rem; /* 设置在页面右侧上方，避开顶部导航栏 */
+            right: 1rem;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            box-shadow: 0 4px 10px var(--shadow);
+            z-index: 990;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
             display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
-        /* 增加底部留白，避免内容被遮挡 */
+        .mobile-menu-btn:active {
+            transform: scale(0.95);
+            background: var(--accent-hover);
+        }
+
+        /* ========= 新增：右侧滑出导航面板 ========= */
+        .mobile-menu-panel {
+            position: fixed;
+            top: 0;
+            right: -300px; /* 默认隐藏在屏幕右侧外部 */
+            width: 260px;
+            height: 100vh;
+            background: var(--bg-card);
+            box-shadow: -4px 0 25px rgba(0,0,0,0.15);
+            z-index: 1000;
+            transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1); /* 平滑滑出效果 */
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid var(--border-color);
+        }
+        [data-theme="dark"] .mobile-menu-panel {
+            box-shadow: -4px 0 25px rgba(0,0,0,0.6);
+        }
+        .mobile-menu-panel.active {
+            right: 0; /* 激活时展开 */
+        }
+
+        /* 面板头部（含标题和关闭按钮） */
+        .mobile-menu-header {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .mobile-menu-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            line-height: 1;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .mobile-menu-close-btn:active {
+            color: var(--accent-primary);
+        }
+
+        /* 面板里的导航链接区 */
+        .mobile-menu-content {
+            padding: 1.5rem 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .mobile-menu-content a {
+            display: block;
+            padding: 0.8rem 1rem;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: background 0.2s;
+            text-align: left;
+        }
+        .mobile-menu-content a:active {
+            background: rgba(var(--accent-primary-rgb), 0.1);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        /* 恢复原状：去除原本因为底部导航而留的空隙 */
         body {
-            padding-bottom: 70px;
+            padding-bottom: 2rem; /* 恢复正常的底部内边距 */
         }
-        .subject-section {
-            scroll-margin-bottom: 70px;
+        /* 移动端页脚重新归位到最底部 */
+        footer {
+            bottom: 1rem;
+            font-size: 0.7rem;
+            padding: 0.3rem 0.8rem;
         }
+
         /* 调整搜索框大小 */
         .search-box {
             padding: 0.6rem 0.9rem;
             font-size: 0.9rem;
         }
         /* 卡片网格单列 */
-        .subject-grid {
+        .subject-grid, .doc-grid {
             grid-template-columns: 1fr;
             gap: 1rem;
         }
@@ -44,23 +143,11 @@
         .section-heading {
             font-size: 1.5rem;
         }
-        /* 文档卡片网格 */
-        .doc-grid {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-        /* 通用标题缩小 */
         .section-title {
             font-size: 1.5rem;
         }
         .subject-section {
             scroll-margin-top: 1rem;
-        }
-        /* ========= 移动端页脚调整 ========= */
-        footer {
-            bottom: 75px; /* 把它往上抬一点，躲开底部的移动端悬浮导航栏 */
-            font-size: 0.7rem; /* 字号再稍微缩小一点点 */
-            padding: 0.3rem 0.8rem;
         }
     }
 </style>

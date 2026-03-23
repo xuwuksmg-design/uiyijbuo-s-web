@@ -24,11 +24,22 @@
             </div>
         </div>
 
-        {% include "footer.njk" %}
+                {% include "footer.njk" %}
     </div>
 
-    <div class="mobile-bottom-nav" id="mobileBottomNav">
-        {% block mobile_nav %}{% endblock %}
+    <!-- 移动端悬浮折叠导航按钮与面板 -->
+    <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="打开导航菜单">
+        <span>☰ 导航</span>
+    </button>
+
+    <div class="mobile-menu-panel" id="mobileMenuPanel">
+        <div class="mobile-menu-header">
+            <span>📑 快速导航</span>
+            <button id="mobileMenuCloseBtn" class="mobile-menu-close-btn" aria-label="关闭菜单">×</button>
+        </div>
+        <div class="mobile-menu-content">
+            {% block mobile_nav %}{% endblock %}
+        </div>
     </div>
 
     <script>
@@ -49,7 +60,33 @@
             });
         }
         setupSmoothScroll('.sidebar a');
-        setupSmoothScroll('#mobileBottomNav a');
+        setupSmoothScroll('.mobile-menu-content a');
+
+        // 移动端折叠菜单交互逻辑
+        const menuBtn = document.getElementById('mobileMenuBtn');
+        const closeBtn = document.getElementById('mobileMenuCloseBtn');
+        const menuPanel = document.getElementById('mobileMenuPanel');
+
+        if (menuBtn && menuPanel) {
+            function openMenu() { menuPanel.classList.add('active'); }
+            function closeMenu() { menuPanel.classList.remove('active'); }
+
+            // 绑定点击事件
+            menuBtn.addEventListener('click', openMenu);
+            if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+            // 哥哥点击面板里的任意链接后，自动收起菜单
+            menuPanel.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            // 哥哥点击屏幕的空白处，也可以自动收起菜单哦
+            document.addEventListener('click', (e) => {
+                if (menuPanel.classList.contains('active') && !menuPanel.contains(e.target) && !menuBtn.contains(e.target)) {
+                    closeMenu();
+                }
+            });
+        }
 
         // 搜索功能（保持不变）
         function initSearch() {
@@ -122,5 +159,3 @@
         }
         document.addEventListener('DOMContentLoaded', initSearch);
     </script>
-</body>
-</html>
