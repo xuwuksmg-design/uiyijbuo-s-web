@@ -150,7 +150,7 @@
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(4px);
         z-index: 9999;
-        display: flex;
+        display: none;          /* 默认隐藏，由 JS 控制显示 */
         align-items: center;
         justify-content: center;
         transition: opacity 0.3s ease;
@@ -202,7 +202,7 @@
     }
 </style>
 
-<!-- 公共脚本：KaTeX 加载检测 + 加载器隐藏 -->
+<!-- 公共脚本：KaTeX 加载检测 + 加载器隐藏逻辑 -->
 <script>
     window.addEventListener('load', function() {
         // 1. KaTeX 加载检测（原有逻辑）
@@ -230,13 +230,16 @@
             }
         }
 
-        // 2. 隐藏加载界面（新增）
+        // 2. 隐藏加载界面并清除标志
         const loader = document.getElementById('loader');
         if (loader) {
             loader.style.opacity = '0';
             setTimeout(() => {
                 loader.style.display = 'none';
+                loader.style.opacity = ''; // 恢复以备下次使用
             }, 300);
         }
+        // 清除跳转标志，避免刷新时重复显示
+        sessionStorage.removeItem('showLoader');
     });
 </script>

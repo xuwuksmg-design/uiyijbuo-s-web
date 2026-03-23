@@ -3,6 +3,58 @@
     <div class="spinner"></div>
 </div>
 
+<!-- 内联脚本：立即检查 sessionStorage 标志，决定是否显示加载器 -->
+<script>
+    (function() {
+        // 如果 sessionStorage 中有跳转标志，则显示加载器
+        if (sessionStorage.getItem('showLoader') === 'true') {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.display = 'flex';
+                // 设置透明度渐变（可选，直接显示）
+                loader.style.opacity = '1';
+            }
+        }
+    })();
+</script>
+
 <div class="nav-bar">
     <a href="/" class="back-link">← 返回首页</a>
 </div>
+
+<!-- 为所有内部链接添加点击事件，设置跳转标志 -->
+<script>
+    (function() {
+        // 判断是否为内部链接（同域、非 target="_blank"、非外部协议）
+        function isInternalLink(link) {
+            const href = link.getAttribute('href');
+            if (!href || href.startsWith('javascript:') || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+                return false;
+            }
+            // 如果是绝对路径，检查是否同域
+            if (href.startsWith('http://') || href.startsWith('https://')) {
+                try {
+                    const url = new URL(href);
+                    return url.hostname === window.location.hostname;
+                } catch(e) {
+                    return false;
+                }
+            }
+            // 相对路径或根路径都视为内部链接
+            return true;
+        }
+
+        // 为所有现有和未来添加的链接绑定事件（事件委托）
+        document.body.addEventListener('click', function(e) {
+            let target = e.target.closest('a');
+            if (!target) return;
+            // 忽略新窗口打开的链接
+            if (target.getAttribute('target') === '_blank') return;
+            if (isInternalLink(target)) {
+                // 设置标志，让下一个页面显示加载器
+                sessionStorage.setItem('showLoader', 'true');
+                // 注意：不阻止默认行为，让页面正常跳转
+            }
+        });
+    })();
+</script>
