@@ -224,21 +224,24 @@
         gap: 1.5rem;
     }
 
-    /* 寄语卡片与名言卡片通用外观 */
+    /* 寄语卡片与名言卡片通用外观（添加毛玻璃） */
     .message-card, .quote-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border-color);
+        background: rgba(var(--bg-card-rgb, 255, 255, 255), 0.7); /* 半透明背景 */
+        backdrop-filter: blur(12px); /* 毛玻璃模糊效果 */
+        -webkit-backdrop-filter: blur(12px); /* 兼容苹果浏览器 */
+        border: 1px solid rgba(var(--border-color-rgb, 226, 232, 240), 0.5);
         border-radius: 1rem;
         padding: 2rem;
-        box-shadow: 0 4px 6px -1px var(--shadow);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05); /* 更柔和的阴影 */
         display: flex;
         flex-direction: column;
         justify-content: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .message-card:hover, .quote-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 15px -3px var(--shadow);
+    [data-theme="dark"] .message-card,
+    [data-theme="dark"] .quote-card {
+        background: rgba(30, 41, 59, 0.7); /* 暗色模式下的半透明背景 */
+        border-color: rgba(51, 65, 85, 0.5);
     }
 
     /* 左侧寄语卡片专属定制（带一点温柔的光晕） */
@@ -308,6 +311,18 @@
         font-size: 0.85rem;
         color: var(--text-secondary);
         line-height: 1.4;
+    }
+    /* 专门为主页的学科入口卡片添加毛玻璃效果 */
+    .home-layout .subject-card {
+        background: rgba(var(--bg-card-rgb, 255, 255, 255), 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(var(--border-color-rgb, 226, 232, 240), 0.5);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    }
+    [data-theme="dark"] .home-layout .subject-card {
+        background: rgba(30, 41, 59, 0.7);
+        border-color: rgba(51, 65, 85, 0.5);
     }
 
     /* ========= 科目页面布局（基础结构） ========= */

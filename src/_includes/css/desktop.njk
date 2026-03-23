@@ -29,34 +29,37 @@
             gap: 2rem;         /* 保持卡片之间的舒适间距 */
         }
 
-                /* ========= 主页左右分栏专用样式 (桌面端) ========= */
+        /* ========= 主页左右分栏专用样式 (桌面端) ========= */
         .home-layout {
             flex-direction: row; /* 在电脑上变成左右横向排列 */
-            align-items: stretch; /* 让左边的小卡片自动拉伸对齐高度 */
+            align-items: center; /* 垂直居中，不再拉伸高度 */
+            justify-content: center; /* 整体居中 */
+            gap: 3rem; /* 左右两边留出足够的间距 */
         }
 
         .home-left {
-            width: 30%; /* 左侧寄语区占 30% 宽度 */
-            flex-shrink: 0;
+            width: 35%; /* 调整左侧区域宽度 */
+            display: flex;
+            justify-content: flex-end; /* 让内部的卡片靠右（即靠近中线） */
         }
 
         .home-right {
-            width: 70%; /* 右侧内容区占 70% 宽度 */
-            flex-grow: 1;
+            width: 55%; /* 右侧内容区宽度 */
         }
 
-        /* 左侧寄语卡片在大屏时填满整个左侧高度 */
+        /* 左侧寄语卡片在大屏时变为普通长形 */
         .message-card {
-            height: 100%;
-            padding: 3rem;
-            font-size: 1.4rem; /* 电脑上字稍微大一点更有感觉 */
+            width: 100%;
+            max-width: 350px; /* 限制最大宽度，变成修长的形状 */
+            padding: 2.5rem 2rem;
+            font-size: 1.3rem;
         }
 
         /* 强制右下角的学科卡片网格为一行三列 */
         .home-right .subject-grid {
             grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
-            margin-top: 0; /* 配合 flex 的 gap */
+            margin-top: 0;
         }
 
         /* 微调桌面端卡片的内部间距 */
