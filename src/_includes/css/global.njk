@@ -12,10 +12,16 @@
         line-height: 1.5;
         padding: 2rem 1rem;
         transition: background 0.3s ease, color 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
     }
     .container {
         max-width: 1200px;
         margin: 0 auto;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
     }
 
     /* ========= 导航栏（通用） ========= */
@@ -59,24 +65,77 @@
         box-shadow: 0 4px 8px var(--shadow);
     }
 
-    /* ========= 通用标题 ========= */
+    /* ========= 通用标题与副标题 ========= */
     .section-title {
-        font-size: 1.75rem;
-        font-weight: 600;
-        margin: 1rem 0 1.5rem 0;
-        border-left: 4px solid var(--accent-primary);
-        padding-left: 1rem;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 2rem 0 0.5rem 0; /* 调整外边距，拉开与上方的距离，贴近副标题 */
+        padding-left: 1.2rem;
+        position: relative;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.5px; /* 稍微增加字距，显得更大气 */
     }
 
-    /* ========= 页脚 ========= */
-    footer {
-        text-align: center;
-        margin-top: 3rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--border-color);
-        color: var(--text-secondary);
-        font-size: 0.875rem;
+    /* 使用伪元素制作渐变色圆角左边框 */
+    .section-title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 10%;
+        bottom: 10%;
+        width: 6px; /* 稍微加粗一点 */
+        background: linear-gradient(to bottom, var(--accent-primary), var(--accent-hover));
+        border-radius: 6px; /* 圆角让边框变得柔和 */
+        box-shadow: 0 2px 4px rgba(var(--accent-primary-rgb, 37, 99, 235), 0.3); /* 增加一点点光晕 */
     }
+
+    /* 专门为副标题增加的样式 */
+    .section-desc {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem; /* 和下方卡片拉开舒适的距离 */
+        padding-left: 1.2rem; /* 和主标题保持对齐 */
+        font-weight: 400;
+        letter-spacing: 0.8px;
+        opacity: 0.85; /* 稍微降低透明度，区分主次 */
+        position: relative;
+    }
+
+
+        /* ========= 页脚 ========= */
+    footer {
+        position: fixed;
+        bottom: 1.5rem; /* 固定在距离底部一点点的位置 */
+        left: 50%;
+        transform: translateX(-50%); /* 确保水平居中 */
+        background: rgba(var(--bg-card), 0.8); /* 半透明背景 */
+        border: 1px solid var(--border-color);
+        border-radius: 2rem; /* 变成胶囊形状 */
+        padding: 0.4rem 1.2rem;
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        text-align: center;
+        z-index: 990; /* 悬浮在内容上方 */
+        box-shadow: 0 4px 10px var(--shadow);
+        width: max-content; /* 宽度小一点，正好包裹住文字 */
+        backdrop-filter: blur(8px); /* 毛玻璃效果，避免遮挡文字时太乱 */
+        opacity: 0.75; /* 平时稍微透明，降低存在感 */
+        transition: all 0.3s ease;
+    }
+
+    footer:hover {
+        opacity: 1; /* 鼠标悬浮时变得清晰 */
+        box-shadow: 0 6px 15px var(--shadow);
+        transform: translateX(-50%) translateY(-2px); /* 轻轻上浮一点 */
+    }
+
+    footer p {
+        display: inline-block; /* 让段落排在一行 */
+        margin: 0 0.5rem;
+    }
+
 
     /* ========= 搜索框 ========= */
     .search-container {
