@@ -24,10 +24,13 @@
         flex-direction: column;
     }
 
-    /* ========= 导航栏（通用） ========= */
+        /* ========= 导航栏（通用） ========= */
     .nav-bar {
         margin-bottom: 2rem;
-        text-align: right;
+        display: flex;
+        justify-content: flex-start; /* 将按钮整体移到左侧 */
+        align-items: center;
+        gap: 0.8rem; /* 给按钮之间留出舒适的间距 */
     }
     .back-link {
         display: inline-flex;
@@ -57,7 +60,7 @@
         cursor: pointer;
         transition: all 0.2s ease;
         box-shadow: 0 2px 4px var(--shadow);
-        margin-left: 0.5rem;
+        /* 去掉了原本的 margin-left，现在由父级的 gap 来统一管理间距哦 */
     }
     .theme-toggle:hover {
         background: var(--accent-hover);
