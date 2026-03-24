@@ -224,105 +224,115 @@
         gap: 1.5rem;
     }
 
-    /* 寄语卡片与名言卡片通用外观（添加毛玻璃） */
-    .message-card, .quote-card {
-        background: rgba(var(--bg-card-rgb, 255, 255, 255), 0.7); /* 半透明背景 */
-        backdrop-filter: blur(12px); /* 毛玻璃模糊效果 */
-        -webkit-backdrop-filter: blur(12px); /* 兼容苹果浏览器 */
-        border: 1px solid rgba(var(--border-color-rgb, 226, 232, 240), 0.5);
+    /* ========= 首页特有卡片：半透明磨砂质感（毛玻璃效果） ========= */
+
+    /* 1. 基础布局结构确保 */
+    .home-layout .subject-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    @media (min-width: 768px) {
+        .home-layout .subject-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+    }
+
+    /* 2. 寄语卡片、名言卡片、学科卡片的通用毛玻璃基底 */
+    .message-card,
+    .quote-card,
+    .home-layout .subject-card {
+        /* 半透明背景，让底层颜色透出来 */
+        background: rgba(255, 255, 255, 0.65);
+        /* 核心魔法：高斯模糊打造磨砂质感 */
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        /* 柔和的边框和阴影 */
+        border: 1px solid rgba(226, 232, 240, 0.6);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* 3. 暗色模式下的磨砂质感适配 */
+    [data-theme="dark"] .message-card,
+    [data-theme="dark"] .quote-card,
+    [data-theme="dark"] .home-layout .subject-card {
+        background: rgba(30, 41, 59, 0.55);
+        border-color: rgba(51, 65, 85, 0.6);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 4. 鼠标悬停时卡片轻轻浮起，变得更加通透 */
+    .message-card:hover,
+    .quote-card:hover,
+    .home-layout .subject-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        background: rgba(255, 255, 255, 0.8);
+    }
+    [data-theme="dark"] .message-card:hover,
+    [data-theme="dark"] .quote-card:hover,
+    [data-theme="dark"] .home-layout .subject-card:hover {
+        background: rgba(30, 41, 59, 0.7);
+    }
+
+    /* 5. 确保学科卡片的文字颜色不受下划线干扰 */
+    .home-layout .subject-card {
+        text-decoration: none;
+        display: block; /* 撑满网格 */
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+    .home-layout .subject-card h3 {
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+    .home-layout .subject-card p {
+        color: var(--text-secondary);
+    }
+
+    /* 6. 寄语与名言文字排版（已分割独立） */
+
+    /* --- 寄语卡片专属样式 --- */
+    .message-card {
         border-radius: 1rem;
         padding: 2rem;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05); /* 更柔和的阴影 */
+        text-align: center;
+        /* 应用柔美飘逸的字体 */
+        font-family: 'Long Cang', cursive;
+        font-size: 1.8rem; /* 手写体偏小，稍微放大一点让它更舒展 */
+        font-weight: 400;
+        line-height: 1.6;
+        color: var(--accent-primary);
         display: flex;
         flex-direction: column;
         justify-content: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    [data-theme="dark"] .message-card,
-    [data-theme="dark"] .quote-card {
-        background: rgba(30, 41, 59, 0.7); /* 暗色模式下的半透明背景 */
-        border-color: rgba(51, 65, 85, 0.5);
+        /* 加一点微弱的发光效果，让字迹更仙气 */
+        text-shadow: 0 2px 8px rgba(var(--accent-primary-rgb), 0.3);
     }
 
-    /* 左侧寄语卡片专属定制（带一点温柔的光晕） */
-    .message-card {
-        text-align: center;
-        font-size: 1.2rem;
-        font-weight: 500;
-        line-height: 1.8;
-        color: var(--accent-primary);
-        background: linear-gradient(135deg, rgba(var(--accent-primary-rgb), 0.08), rgba(var(--accent-primary-rgb), 0.02));
-        border-color: rgba(var(--accent-primary-rgb), 0.2);
-    }
-
-    /* 右侧上方名言卡片 */
+    /* --- 名言卡片专属样式 --- */
     .quote-card {
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         font-size: 1.1rem;
         color: var(--text-primary);
-        font-style: italic;
+        font-style: italic; /* 优雅的斜体 */
         padding: 1.5rem 2rem;
-        border-left: 4px solid var(--accent-primary); /* 经典的左边框名言样式 */
+        border-left: 4px solid var(--accent-primary); /* 恢复左侧的装饰边框 */
     }
     .quote-author {
         margin-top: 0.8rem;
         font-size: 0.9rem;
         color: var(--text-secondary);
-        font-style: normal;
+        font-style: normal; /* 作者名字恢复正体 */
         font-weight: 600;
-        text-align: right;
-    }
-
-    /* ========= 首页卡片（通用） ========= */
-    .subject-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 1.5rem;
-        margin-top: 1rem;
-    }
-    .subject-card {
-        display: block;
-        background: var(--bg-card);
-        border-radius: 1rem;
-        padding: 1.5rem;
-        text-decoration: none;
-        color: var(--text-primary);
-        transition: all 0.25s ease;
-        border: 1px solid var(--border-color);
-        box-shadow: 0 2px 4px var(--shadow);
-        text-align: center;
-    }
-    .subject-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 20px -8px var(--shadow);
-        border-color: var(--accent-primary);
-    }
-    .subject-icon {
-        font-size: 3rem;
-        display: block;
-        margin-bottom: 1rem;
-    }
-    .subject-card h3 {
-        font-size: 1.4rem;
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-        color: var(--text-primary);
-    }
-    .subject-card p {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        line-height: 1.4;
-    }
-    /* 专门为主页的学科入口卡片添加毛玻璃效果 */
-    .home-layout .subject-card {
-        background: rgba(var(--bg-card-rgb, 255, 255, 255), 0.7);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(var(--border-color-rgb, 226, 232, 240), 0.5);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-    }
-    [data-theme="dark"] .home-layout .subject-card {
-        background: rgba(30, 41, 59, 0.7);
-        border-color: rgba(51, 65, 85, 0.5);
+        text-align: right; /* 作者名字靠右对齐 */
     }
 
     /* ========= 科目页面布局（基础结构） ========= */
