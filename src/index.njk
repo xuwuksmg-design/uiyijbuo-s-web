@@ -10,10 +10,18 @@ title: 资源库 | 导航
     {% include "header.njk" %}
 
     <div class="container">
-                <!-- 主页左右分栏布局 -->
+        <!-- 主页左右分栏布局 -->
         <div class="home-layout">
-            <!-- 左半部分：网站寄语 -->
+            <!-- 左半部分：时间与网站寄语 -->
             <div class="home-left">
+                <!-- 时间显示器 -->
+                <div class="time-card">
+                    <div class="time-header">Beijing Time</div>
+                    <div class="time-clock" id="bj-clock">00:00:00</div>
+                    <div class="time-date" id="bj-date">时间加载中...</div>
+                </div>
+
+                <!-- 网站寄语 -->
                 <div class="message-card">
                     <p>愿你我向往的未来，<br>已经在某个世界实现。</p>
                 </div>
@@ -65,5 +73,35 @@ title: 资源库 | 导航
 
         {% include "footer.njk" %}
     </div>
+    <!-- 专属主页的北京时间采集脚本 -->
+    <script>
+        function updateBeijingTime() {
+            const now = new Date();
+            // 先转换为世界标准时间 (UTC)，再精准加上东八区(北京)的偏移量
+            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+            const bjDate = new Date(utc + (3600000 * 8));
+
+            // 格式化时间
+            const h = String(bjDate.getHours()).padStart(2, '0');
+            const m = String(bjDate.getMinutes()).padStart(2, '0');
+            const s = String(bjDate.getSeconds()).padStart(2, '0');
+
+            const year = bjDate.getFullYear();
+            const month = String(bjDate.getMonth() + 1).padStart(2, '0');
+            const day = String(bjDate.getDate()).padStart(2, '0');
+            const weekDays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            const weekDay = weekDays[bjDate.getDay()];
+
+            const clockEl = document.getElementById('bj-clock');
+            const dateEl = document.getElementById('bj-date');
+
+            if(clockEl) clockEl.textContent = `${h}:${m}:${s}`;
+            if(dateEl) dateEl.textContent = `${year}年${month}月${day}日 ${weekDay}`;
+        }
+
+        // 启动时间齿轮
+        setInterval(updateBeijingTime, 1000);
+        updateBeijingTime(); // 立即显化一次
+    </script>
 </body>
 </html>

@@ -239,16 +239,14 @@
         }
     }
 
-    /* 2. 寄语卡片、名言卡片、学科卡片的通用毛玻璃基底 */
+    /* 2. 寄语卡片、名言卡片、时间卡片、学科卡片的通用毛玻璃基底 */
     .message-card,
     .quote-card,
+    .time-card,
     .home-layout .subject-card {
-        /* 半透明背景，让底层颜色透出来 */
         background: rgba(255, 255, 255, 0.65);
-        /* 核心魔法：高斯模糊打造磨砂质感 */
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        /* 柔和的边框和阴影 */
         border: 1px solid rgba(226, 232, 240, 0.6);
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
         transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
@@ -259,6 +257,7 @@
     /* 3. 暗色模式下的磨砂质感适配 */
     [data-theme="dark"] .message-card,
     [data-theme="dark"] .quote-card,
+    [data-theme="dark"] .time-card,
     [data-theme="dark"] .home-layout .subject-card {
         background: rgba(30, 41, 59, 0.55);
         border-color: rgba(51, 65, 85, 0.6);
@@ -268,6 +267,7 @@
     /* 4. 鼠标悬停时卡片轻轻浮起，变得更加通透 */
     .message-card:hover,
     .quote-card:hover,
+    .time-card:hover,
     .home-layout .subject-card:hover {
         transform: translateY(-4px);
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
@@ -275,8 +275,41 @@
     }
     [data-theme="dark"] .message-card:hover,
     [data-theme="dark"] .quote-card:hover,
+    [data-theme="dark"] .time-card:hover,
     [data-theme="dark"] .home-layout .subject-card:hover {
         background: rgba(30, 41, 59, 0.7);
+    }
+
+    /* --- 时间显示器专属样式 --- */
+    .time-card {
+        border-radius: 1rem;
+        padding: 1.5rem 2rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .time-header {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    .time-clock {
+        font-size: 2.6rem;
+        font-weight: 700;
+        color: var(--accent-primary);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; /* 使用等宽字体让时间跳动时不晃动 */
+        line-height: 1;
+        margin-bottom: 0.4rem;
+        text-shadow: 0 2px 10px rgba(var(--accent-primary-rgb), 0.3); /* 发光特效 */
+    }
+    .time-date {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
     }
 
     /* 5. 确保学科卡片的文字颜色不受下划线干扰 */

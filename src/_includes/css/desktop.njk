@@ -40,19 +40,26 @@
         .home-left {
             width: 35%; /* 调整左侧区域宽度 */
             display: flex;
-            justify-content: flex-end; /* 让内部的卡片靠右（即靠近中线） */
+            flex-direction: column; /* 改为纵向排列，让时间和寄语上下堆叠 */
+            align-items: flex-end;  /* 让卡片整体靠右（靠近中线） */
+            justify-content: center; /* 整体垂直居中，与右侧保持对称 */
+            gap: 2.5rem; /* 设定时间与寄语的舒适间距，自然地把寄语往下推 */
         }
 
         .home-right {
             width: 55%; /* 右侧内容区宽度 */
         }
 
-        /* 左侧寄语卡片在大屏时变为普通长形 */
-        .message-card {
+        /* 左侧时间与寄语卡片在大屏时统一尺寸 */
+        .message-card,
+        .time-card {
             width: 100%;
-            max-width: 350px; /* 限制最大宽度，变成修长的形状 */
+            max-width: 350px; /* 限制最大宽度，保持修长的形状 */
+        }
+
+        .message-card {
             padding: 2.5rem 2rem;
-            font-size: 1.3rem;
+            /* 若想进一步调大寄语，可在这里覆盖 font-size */
         }
 
         /* 强制右下角的学科卡片网格为一行三列 */
